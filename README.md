@@ -1,2 +1,2 @@
 # WOS_curriculum
-Full Curriculum of the WOS-can-code program
+Repository containing all the personal activity for the WOS-can-code program.
