@@ -1,0 +1,13 @@
+.foot{
+    padding: 20px;
+    border-top: 2px solid black;
+    background-color: rgb(8, 83, 148);
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+}
+
+h3{
+    width: 100%;
+    max-width: 900px;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact us page for Earworm Inc." />
+    <title>Contact Us</title>
+    <style>
+      h1 {
+        color: teal;
+        font-family: Georgia, serif;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      p {
+        background-color: #fef3c7;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contact Earworm Inc.</h1>
+
+    <form action="" method="post">
+      <h2>We'd love your feedback</h2>
+
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" autocomplete="name" />
+      </div>
+
+      <div>
+        <label for="email">Email *</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          autocomplete="email"
+          aria-invalid="true"
+          aria-describedby="email-error"
+          required />
+      </div>
+
+      <div id="email-error" role="alert">
+        Please enter a valid email address.
+      </div>
+
+      <div>
+        <label for="feedback">Your Message *</label>
+        <textarea name="feedback" id="feedback" required></textarea>
+      </div>
+
+      <fieldset>
+        <legend>How did you hear about us?</legend>
+        <div>
+          <input
+            type="radio"
+            id="hear-social"
+            name="hear-method"
+            value="Social Media" />
+          <label for="hear-social">Social Media</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="hear-friend"
+            name="hear-method"
+            value="Friend" />
+          <label for="hear-social">Friend</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="hear-other"
+            name="hear-method"
+            value="Other" />
+          <label for="hear-social">Other</label>
+        </div>
+      </fieldset>
+
+      <div>
+        <input type="checkbox" name="newsletter" id="newsletter" />
+        <label for="newsletter">Sign me up for the newsletter</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <footer>
+      <h2>Need to reach us directly?</h2>
+      <p>
+        Email us at <a href="mailto:contact@example.com">contact@example.com</a>
+      </p>
+      <p>Call us at (555) 867-5309</p>
+      <p>Visit our office between 9am - 5pm, Monday through Friday</p>
+      <p>&#169; 2025 Earworm Inc. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+@model List<CineMini.Models.Movie>
+
+@{
+    ViewData["Title"] = ViewData["PageTitle"];
+}
+
+<h1>Total Number of movies: @ViewBag.MovieCount</h1>
+<p>Last updated: @ViewData["Date"]</p>
+
+<section style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem">
+    @foreach(var movie in Model){
+        @await Html.PartialAsync("_MovieCard", movie)
+    }
+</section>

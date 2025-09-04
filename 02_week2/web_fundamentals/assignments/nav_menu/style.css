@@ -1,0 +1,44 @@
+html{
+    font-family: 'Roboto', sans-serif;
+}
+
+.container{
+    background-color: rgb(48, 80, 79);
+}
+
+.flex-container{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+
+}
+
+.flex-container li a{
+    color: white;
+    text-decoration: none;
+    transition: 250ms ease;
+}
+
+.flex-container li a:hover{
+    color: aquamarine;
+    text-decoration: underline;
+}
+
+.flex-container button{
+    background-color: rgb(126, 255, 212);
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: 250ms ease;
+
+}
+
+.flex-container button:hover{
+    color: rgb(3, 204, 137);
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 0 8px white;
+}

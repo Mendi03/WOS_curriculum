@@ -1,0 +1,57 @@
+body {
+  font-family: system-ui, sans-serif;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  width: 20rem;
+  background-color: #f0f0f0;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 3px 3px 5px darkgray;
+
+  animation: fadeIn 3s ease forwards;
+  transition: transform 0.3s ease-in-out 0s, box-shadow 0.3s ease-in-out 0s;
+}
+
+.card-img {
+  display: block;
+  max-width: 100%;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  margin-top: 0;
+}
+
+.card-description {
+  line-height: 1.5rem;
+}
+
+/* animation */
+
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+/* transition */
+
+.card:hover{
+  transform: scale(1.1);
+  box-shadow: 8px 5px 15px darkgray;
+
+}

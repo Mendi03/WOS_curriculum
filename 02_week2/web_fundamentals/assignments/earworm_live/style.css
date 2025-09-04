@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+}
+
+body{
+    font-family: 'Roboto';
+}
+
+header {
+    background-color: #18244a;
+}
+
+header h1{
+    text-align: center;
+    color: rgb(160, 178, 246);
+    margin: 0;
+    padding: 25px;
+    border-bottom: 1px solid rgb(112, 143, 255);;
+}
+
+nav {
+    background-color: rgb(20, 23, 38);
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+    margin: 0;
+    
+}
+
+nav ul li a{
+    color: rgb(160, 178, 246);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+img{
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+main{
+    padding: 20px 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    justify-self: center;
+    width: 100%;
+    background-color: rgb(158, 177, 254);
+    /* overflow: hidden; */
+    border-radius: 10px;
+    border: 1px solid rgb(55, 68, 112);
+    position: relative;
+}
+
+.card .badge {
+    position: absolute;
+    right: -10px;
+    top: -15px;
+    z-index: 3;
+    background-color: rgb(204, 28, 100);
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+
+}
+
+.card div h3{
+    margin: 0;
+}
+
+.card div{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card button {
+    width: fit-content;
+    background-color: rgb(204, 28, 100);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin-top: 15px;
+    align-self: flex-end;
+    font-size: 12px;
+    transition: 250ms ease;
+
+
+}
+
+.card button:hover{
+    box-shadow: 0 0 5px rgb(131, 131, 131);
+    background-color: #18244a;
+}
+
+footer{
+    background-color: rgb(20, 23, 38);
+    color:  rgb(158, 177, 254);
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 25px 0px;
+}
+
+footer a{
+    color:  rgb(158, 177, 254);
+}
+
+body > button{
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 40;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 1px solid rgb(217, 182, 195);
+    background-color: rgb(250, 206, 221);
+}

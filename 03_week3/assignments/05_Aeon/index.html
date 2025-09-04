@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" /> -->
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <!-- header start -->
+    <header class="flex-container">
+      <div class="flex-container gap">
+        <h1>Studio Aeon</h1>
+        <nav>
+          <ul class="flex-container gap">
+            <li><a href="">Home</a></li>
+            <li><a href="">Games</a></li>
+            <li><a href="">Leaderboard</a></li>
+            <li><a href="">Profile</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- header end -->
+
+    <!-- main content start-->
+    <main class="flex-container gap">
+      <section class="flex-container gap">
+        <!-- main top -->
+        <div class="flex-container gap">
+          <h2>Zhara Vex is Coming</h2>
+          <figure class="flex-container gap">
+            <img
+              src="images/zhara-vex.webp"
+              alt="Neon shard's newest hero, Zhara Vex" />
+            <figcaption>Meet <span>Neon Shard</span>'s newest hero.</figcaption>
+            <button>Read more -></button>
+          </figure>
+        </div>
+        <!-- main bottom -->
+        <div class="mains flex-container gap">
+          <h3>Top mains</h3>
+          <div class="cards flex-container gap">
+            <div class="card flex-container gap">
+              <p>Juno Reyes</p>
+              <div>
+                <img src="images/juno-reyes.webp" alt="" />
+                <div class="flex-container gap">
+                  <label for="amp"><span>0</span> Amps</label>
+                  <button
+                    name="amp"
+                    id="amp"
+                    type="button"
+                    onclick="increment(this)">
+                    amp
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- 2nd char -->
+            <div class="card flex-container gap">
+              <p>Kaika Moana</p>
+              <div>
+                <img src="images/kaika-moana.webp" alt="" />
+                <div class="flex-container gap">
+                  <label for="amp"><span>0</span> Amps</label>
+                  <button
+                    name="amp"
+                    id="amp"
+                    type="button"
+                    onclick="increment(this)">
+                    amp
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- 3rd char -->
+            <div class="card flex-container gap">
+              <p>Rook Granger</p>
+              <div>
+                <img src="images/rook-granger.webp" alt="" />
+                <div class="flex-container gap">
+                  <label for="amp"><span>0</span> Amps</label>
+                  <button
+                    name="amp"
+                    id="amp"
+                    type="button"
+                    onclick="increment(this)">
+                    amp
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- aside -->
+      <aside class="flex-container gap">
+        <div class="flex-container gap">
+          <h3>level up your life</h3>
+          <p>
+            Join thousands of players in the most addictive web-based game ever
+            created
+          </p>
+          <button id="join-now" onclick="hide(this)">Join Now</button>
+        </div>
+        <div class="flex-container gap">
+          <h3>Preorder Gridfall</h3>
+          <p>Enter your email to preorder your next obsession</p>
+          <div class="preorder flex-container">
+            <input name="email" type="email" id="email" autocomplete="email" />
+            <button
+              type="button"
+              name="preorder"
+              id="preorder"
+              onclick="newsletter()">
+              Preorder
+            </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <!-- main end -->
+  </body>
+</html>

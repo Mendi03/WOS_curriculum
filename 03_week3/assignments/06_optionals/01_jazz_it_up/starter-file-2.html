@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shrek's Swampy Sanctuary</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <!-- <link
+      rel="stylesheet"
+      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-lime-950">
+    <div class="container">
+      <!-- Header Section: Contains the main title of the page -->
+      <header>
+        <div>
+          <h1>Welcome to Shrek's Swampy Sanctuary!</h1>
+          <p>Get out of my swamp! (But feel free to style it first.)</p>
+        </div>
+      </header>
+      <!-- Navigation Section: Links to different parts of the page or related content -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a href="" class="navbar-brand"></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About Shrek</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#swamp-life">Swamp Life</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Ask the Ogre</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#dailies">Ogre Routines</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Main Content Area: The primary content of the page -->
+      <div class="grid">
+        <main>
+          <!-- Section 1: About Shrek's grumpy charm -->
+          <section id="about">
+            <article class="card">
+              <header class="card-header">
+                <h2>The Many Layers of Shrek</h2>
+                <p>Posted on: Once Upon a Time</p>
+              </header>
+              <div class="card-body">
+                <p class="card-text">
+                  Shrek, the quintessential ogre, embodies a complex blend of
+                  curmudgeonly charm and heroic selflessness. Living a solitary
+                  life in his beloved swamp, he initially craves peace and
+                  quiet, only to find his world turned upside down by a motley
+                  crew of fairytale creatures and a quest from Lord Farquaad.
+                  Despite his gruff exterior, Shrek possesses a heart of gold,
+                  demonstrating loyalty, love, and a surprising capacity for
+                  tenderness.
+                </p>
+                <p class="card-text">
+                  His iconic phrase, "Ogres are like onions," perfectly
+                  encapsulates his philosophy – both have layers. He's not just
+                  a big, green brute; he's a nuanced character who values true
+                  friendship and fights for what's right, even if he complains
+                  about it every step of the way.
+                </p>
+              </div>
+              <footer class="card-footer">Written by: A Fan Who Gets It</footer>
+            </article>
+          </section>
+          <!-- Section 2: Life in the swamp -->
+          <section id="swamp-life">
+            <article class="card">
+              <header class="card-header">
+                <h2>A Day in the Life: Swamp Edition</h2>
+                <p>Published: Every Sunrise, Essentially</p>
+              </header>
+              <div class="card-body">
+                <p>
+                  Life in Shrek's swamp is anything but ordinary. From mud baths
+                  to earwax candles, every detail speaks to a life unburdened by
+                  societal norms. The air is thick with the scent of sulfur and
+                  freedom, and the sounds of Donkey's chatter, Fiona's powerful
+                  singing, and the occasional burp fill the serene landscape.
+                </p>
+                <p>
+                  It's a place where gingerbread men come to life, where dragons
+                  fall in love, and where even a feared ogre can find his
+                  happily ever after. The swamp is not just a dwelling; it's a
+                  character in itself, reflecting Shrek's desire for simplicity
+                  and his gradual acceptance of a life filled with unexpected
+                  joy and chaos.
+                </p>
+              </div>
+              <footer class="card-footer">Observer: Donkey, probably</footer>
+            </article>
+          </section>
+          <!-- Form Section: A form with various input types -->
+          <section id="contact">
+            <h2>Inquire at the Swamp</h2>
+            <form>
+              <div>
+                <label for="name" class="form-label"
+                  >Your Name (No Fairy Godmothers!):</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="user_name"
+                  required
+                  class="form-control" />
+              </div>
+              <div>
+                <label for="email" class="form-label"
+                  >Your Email (For Swamp Mail Delivery):</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="user_email"
+                  required
+                  class="form-control" />
+              </div>
+              <div>
+                <label for="message" class="form-label"
+                  >Your Swampy Concerns:</label
+                >
+                <textarea
+                  id="message"
+                  name="user_message"
+                  rows="5"
+                  placeholder="Tell Shrek what's bothering you... or just say hello."
+                  class="form-control"></textarea>
+              </div>
+              <!-- Checkbox for permissions -->
+              <div>
+                <input
+                  type="checkbox"
+                  id="newsletter"
+                  name="newsletter"
+                  class="form-check-input" />
+                <label for="newsletter" class="form-label"
+                  >Allow Donkey to send you daily riddles?</label
+                >
+              </div>
+              <!-- Radio buttons for preferences -->
+              <div>
+                <p>Your Preferred Swamp Odor:</p>
+                <div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="sulfur"
+                      name="odor_preference"
+                      value="sulfur"
+                      class="form-check-input" />
+                    <label for="sulfur">Classic Sulfur</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="mud"
+                      name="odor_preference"
+                      value="mud"
+                      class="form-check-input" />
+                    <label for="mud">Freshly Turned Mud</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="mystery"
+                      name="odor_preference"
+                      value="mystery"
+                      checked
+                      class="form-check-input" />
+                    <label for="mystery">Ogre's Mystery Mixture</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Select dropdown -->
+              <div>
+                <label for="favorite_sidekick">Your Favorite Sidekick:</label>
+                <select
+                  id="favorite_sidekick"
+                  name="favorite_sidekick"
+                  class="btn btn-primary">
+                  <option value="">-- Please Choose --</option>
+                  <option value="donkey">Donkey (Naturally)</option>
+                  <option value="puss_in_boots">
+                    Puss In Boots (The Cat with Style)
+                  </option>
+                  <option value="dragon">Dragon (A Fiery Companion)</option>
+                  <option value="gingy">Gingy (The Brave Little Cookie)</option>
+                </select>
+              </div>
+              <div>
+                <input
+                  type="submit"
+                  value="Send to Shrek"
+                  class="btn btn-primary" />
+              </div>
+            </form>
+          </section>
+          <!-- Table Section: Displaying tabular data -->
+          <section id="dailies">
+            <h2>Shrek's Daily Routine (Approximate)</h2>
+            <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Activity</th>
+                    <th>Participants</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>7:00 AM</td>
+                    <td>Wake Up & Grumble</td>
+                    <td>Shrek</td>
+                  </tr>
+                  <tr>
+                    <td>7:30 AM</td>
+                    <td>Ogre Breakfast (e.g., Eye of Newt Cereal)</td>
+                    <td>Shrek, Donkey (begging for waffles)</td>
+                  </tr>
+                  <tr>
+                    <td>9:00 AM</td>
+                    <td>Swamp Patrol & Boundary Marking</td>
+                    <td>Shrek</td>
+                  </tr>
+                  <tr>
+                    <td>12:00 PM</td>
+                    <td>Lunch (Whatever's Foraging)</td>
+                    <td>Shrek, Fiona, The Kids</td>
+                  </tr>
+                  <tr>
+                    <td>2:00 PM</td>
+                    <td>Attempt to Nap (Interrupted by Donkey)</td>
+                    <td>Shrek, Donkey (unintentionally)</td>
+                  </tr>
+                  <tr>
+                    <td>4:00 PM</td>
+                    <td>Storytime (with Ogre-sized Roars)</td>
+                    <td>Shrek, Fiona, Ogrelings</td>
+                  </tr>
+                  <tr>
+                    <td>6:00 PM</td>
+                    <td>Dinner & Family Chaos</td>
+                    <td>The Whole Swamp Crew</td>
+                  </tr>
+                  <tr>
+                    <td>8:00 PM</td>
+                    <td>Stare at the Moon & Ponder Existence</td>
+                    <td>Shrek (alone, hopefully)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+        <!-- Aside Section: Supplementary content related to the main content -->
+        <aside>
+          <h3>Shrek's Wisdom Corner</h3>
+          <ul>
+            <li><a href="#">"Ogres are like onions. They have layers."</a></li>
+            <li><a href="#">"Better out than in, I always say."</a></li>
+            <li><a href="#">"Donkey, you're a noble steed." (Probably)</a></li>
+            <li><a href="#">The Importance of Personal Space</a></li>
+          </ul>
+          <!-- Details Element: Collapsible section for additional information -->
+          <details>
+            <summary>Did you know Shrek almost looked different?</summary>
+            <div>
+              <p>
+                Originally, Shrek's voice actor was Chris Farley, who recorded
+                much of the dialogue before his passing. After Farley's death,
+                Mike Myers took over the role. Myers famously decided to redo
+                Shrek's voice with a Scottish accent, giving the character his
+                distinct and beloved voice that we know today. This decision
+                significantly shaped Shrek's personality and the overall tone of
+                the film!
+              </p>
+            </div>
+          </details>
+        </aside>
+      </div>
+      <!-- Footer Section: General copyright or contact info -->
+      <footer>
+        <div>
+          <p>
+            &copy; 2023 Not DreamWorks. This page is for educational purposes
+            only. Do not approach real ogres without caution.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+@model HeroForm.ViewModels.SuccessViewModel
+
+@{
+    ViewData["Title"] = "Registration - Successful";
+
+    var hero = Model;
+}
+
+<h1>Thank you for registering.</h1>
+<div class="card p-3" style="color: white; background-color: rgb(78, 94, 109);">
+    <h2>Success!</h2>
+    <p>Congratulations, @hero.Name, the @hero.HeroType has been registered!</p>
+</div>

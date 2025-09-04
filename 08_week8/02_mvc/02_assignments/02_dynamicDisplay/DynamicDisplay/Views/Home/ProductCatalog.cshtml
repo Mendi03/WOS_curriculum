@@ -1,0 +1,51 @@
+@using Microsoft.AspNetCore.Components.Web
+@{
+    string PageTitle = "Our Awesome Products";
+
+    var ProductNames = new List<string>{
+        "Laptop", 
+        "Smartphone", 
+        "Headphones", 
+        "Webcam"
+    };
+
+    var ProductPrices = new List<decimal>{
+        1200.00m, 
+        800.00m, 
+        150.00m, 
+        75.00m
+    };
+
+    var IsOnSale  = new List<bool>{
+        true,
+        false,
+        true,
+        false
+    };
+
+    ViewData["Title"] = PageTitle;
+}
+
+<h1>@PageTitle</h1>
+<p>Current Date and Time: @DateTime.Now</p>
+
+<div>
+    <ul>
+        @for(int i = 0; i < ProductNames.Count; i++){
+            <li>
+                Product: @ProductNames[i]
+                Price: 
+                @if(ProductPrices[i]> 1000){
+                    <span style="color: blue">(@ProductPrices[i].ToString("C"))</span>
+                }
+                else{
+                    <span>(@ProductPrices[i].ToString("C"))</span>
+                }
+                @(IsOnSale[i] ? Html.Raw("<span class=\"text-danger\">SALE!</span>") : null)
+            </li>
+        }
+    </ul>
+    <p>
+        <span style="font-weight: bold;">Total products:</span> @ProductNames.Count
+    </p>
+</div>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- header -->
+    <header class="flex-container">
+      <div class="flex-container">
+        <div class="top-header flex-container">
+          <h1>Pixel<span>Punks</span></h1>
+          <div class="flex-container">
+            <div class="flex-container l-gap">
+              <div class="search-bar flex-container">
+                <input
+                  type="text"
+                  id="search"
+                  name="search"
+                  autocomplete="name" />
+                <button type="button" onclick="searchItem()">Search</button>
+              </div>
+              <p id="cart">0</p>
+            </div>
+          </div>
+        </div>
+        <!-- navigation bar -->
+        <nav class="bottom-header flex-container">
+          <ul class="flex-container m-gap">
+            <li><a href="">Home</a></li>
+            <li><a href="">Games</a></li>
+            <li><a href="">Account</a></li>
+            <li><a href="">Support</a></li>
+            <li><a href="">Cart</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="flex-container l-gap">
+      <section class="flex-container l-gap">
+        <h2>Punk Picks of the Week</h2>
+        <div class="carousel flex-container l-gap">
+          <img
+            src="images/chevron-left.webp"
+            alt="left arrow button"
+            onclick="changeImg()" />
+          <div>
+            <img
+              src="images/blasterrex.webp"
+              alt="Blasterrex first game"
+              id="main-image" />
+          </div>
+          <img
+            src="images/chevron-right.webp"
+            alt="right arrow button"
+            onclick="changeImg2()" />
+        </div>
+      </section>
+      <aside>
+        <div class="flex-container m-gap">
+          <h3>Top of the Punk Stack</h3>
+          <!-- cards -->
+          <div class="cards flex-container l-gap">
+            <div class="card flex-container">
+              <img
+                src="images/chronoclash-turbo.webp"
+                alt="Chronoclash turbo racing game" />
+              <!-- bottom section of card -->
+              <section class="flex-container">
+                <div class="description flex-container s-gap">
+                  <h4>Chronoclash Turbo</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Neque ipsam harum saepe omnis aspernatur ducimus laudantium
+                    excepturi vero nobis.
+                  </p>
+                </div>
+                <div class="card-foot flex-container">
+                  <p class="price">$10.99</p>
+                  <button type="button" onclick="addToCart()">
+                    Add to Cart
+                  </button>
+                </div>
+              </section>
+            </div>
+            <div class="card flex-container">
+              <img
+                src="images/hyper-flux.webp"
+                alt="Hyper flux bullet hell game" />
+              <!-- bottom section of card -->
+              <section class="flex-container">
+                <div class="description flex-container s-gap">
+                  <h4>Hyper Flux</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Neque ipsam harum saepe.
+                  </p>
+                </div>
+                <div class="card-foot flex-container">
+                  <p class="price">$12.99</p>
+                  <button type="button" onclick="addToCart()">
+                    Add to Cart
+                  </button>
+                </div>
+              </section>
+            </div>
+            <div class="card flex-container">
+              <img
+                src="images/starpunch-7.webp"
+                alt="Starpunch 7 fighting game" />
+              <!-- bottom section of card -->
+              <section class="flex-container">
+                <div class="description flex-container s-gap">
+                  <h4>Starpunch 7</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Itaque ullam sapiente nobis! In explicabo dignissimos modi
+                    fugiat ratione nisi fugit perferendis architecto aliquam,
+                    quod error aut enim doloribus necessitatibus velit.
+                  </p>
+                </div>
+                <div class="card-foot flex-container">
+                  <p class="price">$8.99</p>
+                  <button type="button" onclick="addToCart()">
+                    Add to Cart
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

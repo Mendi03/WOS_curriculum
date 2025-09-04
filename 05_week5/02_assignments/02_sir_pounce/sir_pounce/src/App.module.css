@@ -1,0 +1,23 @@
+*{
+     box-sizing: border-box;
+}
+
+main > div{
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    width: 100%;
+    max-width: 900px;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding:20px;
+}
+
+body{
+    margin: 0;
+    font-family: sans-serif;
+}

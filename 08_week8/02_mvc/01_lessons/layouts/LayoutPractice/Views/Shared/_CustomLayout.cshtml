@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <title>@ViewData["Title"]</title>
+    </head>
+    <body>
+        <h1>My Custom App</h1>
+        @RenderBody()
+        <footer>Copyright 2024</footer>
+         @await RenderSectionAsync("HeaderContent", required: true) @* Optional Scripts section *@
+    </body>
+</html>

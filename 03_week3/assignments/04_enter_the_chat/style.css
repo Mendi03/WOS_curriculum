@@ -1,0 +1,28 @@
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+section{
+    width: 100%;
+    padding: 20px;
+}
+
+.card{
+    background-color: rgb(43, 29, 62);
+    max-width: 700px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 40px 30px;
+    border-radius: 20px;
+}
+
+h1, form, button{
+    width: 100%;
+}
+
+

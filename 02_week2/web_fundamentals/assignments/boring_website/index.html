@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 onmouseenter="lesgo(this)" onmouseleave="reset(this)">
+      My Boring Website
+    </h1>
+    <section class="flex-container gap">
+      <main onclick="party(this)" class="flex-container gap">
+        <div>
+          <h2 onclick="party2(this)">The Sky Was Blue.</h2>
+          <p onclick="party3(this)">
+            Clouds were present, but not particularly noteworthy. The sun was
+            shining. The ground was beneath. People were generally doing what
+            they were doing. One could observe various objects and individuals,
+            each with their own features and locations. The air was comprised of
+            typical gases, and gravity continued to exert its influence.
+          </p>
+        </div>
+        <div class="flex-container">
+          <h3 onmouseenter="emotion1(this)" onmouseleave="unamused(this)">
+            😐
+          </h3>
+          <h3 onmouseenter="emotion2(this)" onmouseleave="unamused(this)">
+            😐
+          </h3>
+          <h3 onmouseenter="emotion3(this)" onmouseleave="unamused(this)">
+            😐
+          </h3>
+        </div>
+      </main>
+      <aside class="flex-container gap">
+        <div>
+          <h4 onmouseenter="facts(this)">Boring Fact</h4>
+          <p onmouseenter="facts2(this)">
+            The standard width of a double-spaced line on U.S. letter-sized
+            paper is about 0.34 inches.
+          </p>
+        </div>
+        <button onclick="hide(this)">Put me out of my missery</button>
+      </aside>
+    </section>
+  </body>
+</html>

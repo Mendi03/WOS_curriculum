@@ -1,0 +1,73 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    padding: 30px;
+}
+
+nav{
+    background-color: antiquewhite;
+    padding: 15px;
+}
+
+nav ul{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+}
+
+nav ul li a::after {
+    content: " →";
+}
+
+nav ul a{
+    color: rgb(28, 97, 14);
+    text-decoration: none;
+    
+}
+
+nav ul li:first-child a{
+    font-weight: bold;
+    color: brown;
+}
+
+body nav ul a:hover{
+    color: yellow;
+}
+
+form input[placeholder]{
+    padding: 3px 10px;
+    border: 2px solid rgb(28, 97, 14);
+}
+
+form input[type="email"]:focus{
+    outline: none;
+    border-color:rgb(180, 180, 255);
+}
+
+form input:last-child{
+    background-color: brown;
+    color: white;
+}
+
+main p:first-child::first-letter {
+    font-size: 50px;
+    color: brown;
+    font-weight: bold;
+}
+
+main p:nth-child(2)::first-line {
+    color: brown;
+}
+
+p:empty{
+    border: 1px dashed grey;
+    padding: 5px;
+}
+
+

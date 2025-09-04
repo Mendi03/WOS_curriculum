@@ -1,0 +1,18 @@
+@model Movie
+
+@{
+    var movie = Model;
+}
+
+<div class="card" style="padding: 1rem;">
+    <h2>@movie.Title</h2>
+    <p>Genre: @movie.Genre</p>
+    <p>Release year: @movie.ReleaseYear</p>
+    @if(movie.IsClassic){
+        <p class="classic position-absolute top-0 start-100 translate-middle">Classic</p>
+    }
+    else if(movie.IsFeatured){
+        <p class="featured position-absolute top-0 start-100 translate-middle">Featured</p>
+    }
+    <a href="movies/@movie.Id">Details...</a>
+</div>

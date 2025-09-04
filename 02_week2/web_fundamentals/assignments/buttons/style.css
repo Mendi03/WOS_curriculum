@@ -1,0 +1,74 @@
+header h1{
+    text-align: center;
+}
+
+header p {
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.buttons
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    border: 1px solid black;
+    padding: 10px;
+    background-color: cadetblue;
+}
+
+.buttons div{
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+button{
+    padding: 20px;
+    color: white;
+}
+
+.btn1 {
+    background-color: rgb(68, 68, 68);
+    padding: 20px;
+    border: none;
+}
+
+.btn2 {
+    background-color: white;
+    color: rgb(68, 68, 68);
+    padding: 20px;
+    border: 2px solid rgb(68, 68, 68);
+}
+
+.btn3 {
+    background-color: rgb(79, 91, 213);
+    padding: 20px;
+    border: none;
+    box-shadow: 0px 0px 30px 2px rgba(79,91,213,0.4);
+}
+
+.btn4 {
+    background-color: rgb(234, 30, 99);
+    border: none;
+    border-radius: 50px;
+}
+
+.btn5 {
+    background-image: linear-gradient(90deg, rgb(254, 102, 3), rgb(255, 0, 162));
+    border: none;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 10px 1px rgb(231, 231, 231);
+}
+
+.btn6 {
+    background-color: #00bcd5;
+    border-radius: 50px;
+    border: none;
+    font-size: 30px;
+    padding: 10px;
+    box-shadow: 0 5px 10px 1px rgb(231, 231, 231);
+
+}

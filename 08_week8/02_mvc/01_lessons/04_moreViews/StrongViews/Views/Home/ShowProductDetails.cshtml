@@ -1,0 +1,22 @@
+@* Views/Home/ShowProductDetails.cshtml *@
+@model StrongViews.Models.Product 
+@* ^ Declares that this view expects a Product object *@
+
+@{
+    ViewData["Title"] = "Product Details (Strongly Typed)";
+}
+
+<h1>Product Details (Strongly Typed View)</h1>
+
+@* --- Direct Access with @Model --- *@
+@* This is the most common way to access the model *@
+<h2>@Model.Name</h2>
+<p>ID: @Model.Id</p>
+<p>Price: @Model.Price.ToString("C")</p> @* Use ToString("C") for currency formatting *@
+<p>Status: @(Model.IsAvailable ? "In Stock" : "Out of Stock")</p>
+<p>Description: @Model.Description</p>
+
+@if (!Model.IsAvailable)
+{
+    <p style="color: red; font-weight: bold;">This product is currently unavailable.</p>
+}

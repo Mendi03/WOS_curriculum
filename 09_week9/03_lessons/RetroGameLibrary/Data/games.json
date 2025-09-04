@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "title": "Super Mario Bros.",
+    "console": "NES",
+    "releaseYear": 1985,
+    "rating": 9.4
+  },
+  {
+    "id": 2,
+    "title": "The Legend of Zelda",
+    "console": "NES",
+    "releaseYear": 1986,
+    "rating": 9.2
+  },
+  {
+    "id": 3,
+    "title": "Sonic the Hedgehog",
+    "console": "Genesis",
+    "releaseYear": 1991,
+    "rating": 8.9
+  },
+  {
+    "id": 4,
+    "title": "Street Fighter II",
+    "console": "SNES",
+    "releaseYear": 1992,
+    "rating": 9.0
+  },
+  {
+    "id": 5,
+    "title": "Chrono Trigger",
+    "console": "SNES",
+    "releaseYear": 1995,
+    "rating": 9.7
+  },
+  {
+    "id": 6,
+    "title": "GoldenEye 007",
+    "console": "N64",
+    "releaseYear": 1997,
+    "rating": 9.1
+  },
+  {
+    "id": 7,
+    "title": "Final Fantasy VII",
+    "console": "PlayStation",
+    "releaseYear": 1997,
+    "rating": 9.5
+  },
+  {
+    "id": 8,
+    "title": "Crash Bandicoot",
+    "console": "PlayStation",
+    "releaseYear": 1996,
+    "rating": 8.3
+  },
+  {
+    "id": 9,
+    "title": "Donkey Kong Country",
+    "console": "SNES",
+    "releaseYear": 1994,
+    "rating": 8.8
+  },
+  {
+    "id": 10,
+    "title": "Metroid",
+    "console": "NES",
+    "releaseYear": 1986,
+    "rating": 8.5
+  },
+  {
+    "id": 11,
+    "title": "EarthBound",
+    "console": "SNES",
+    "releaseYear": 1995,
+    "rating": 9.0
+  },
+  {
+    "id": 12,
+    "title": "Pokémon Red",
+    "console": "Game Boy",
+    "releaseYear": 1996,
+    "rating": 9.6
+  },
+  {
+    "id": 13,
+    "title": "Tetris",
+    "console": "Game Boy",
+    "releaseYear": 1989,
+    "rating": 9.8
+  },
+  {
+    "id": 14,
+    "title": "Castlevania",
+    "console": "NES",
+    "releaseYear": 1986,
+    "rating": 8.4
+  },
+  {
+    "id": 15,
+    "title": "Mega Man 2",
+    "console": "NES",
+    "releaseYear": 1988,
+    "rating": 9.0
+  },
+  {
+    "id": 16,
+    "title": "Banjo-Kazooie",
+    "console": "N64",
+    "releaseYear": 1998,
+    "rating": 8.7
+  },
+  {
+    "id": 17,
+    "title": "Tekken 3",
+    "console": "PlayStation",
+    "releaseYear": 1998,
+    "rating": 9.1
+  },
+  {
+    "id": 18,
+    "title": "Star Fox 64",
+    "console": "N64",
+    "releaseYear": 1997,
+    "rating": 8.9
+  },
+  {
+    "id": 19,
+    "title": "Shaq Fu",
+    "console": "Genesis",
+    "releaseYear": 1994,
+    "rating": 4.5
+  },
+  {
+    "id": 20,
+    "title": "Bubsy 3D",
+    "console": "PlayStation",
+    "releaseYear": 1996,
+    "rating": 3.8
+  }
+]

@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+   font-family: "Fredoka", sans-serif;
+}
+
+header{
+    background-color: #08CB00;
+    display: flex;
+    justify-content: center;
+}
+
+header > h1{
+    width: 100%;
+    max-width: 700px;
+    padding: 1rem;
+    color: rgb(28, 28, 28);
+    font-family: "Doto", sans-serif;
+}
+
+body{
+    background-color: rgb(28, 28, 28);
+}
+
+button{
+    cursor: pointer;
+}

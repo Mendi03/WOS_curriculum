@@ -1,0 +1,78 @@
+@* Views/Home/ShowConditionals.cshtml *@
+@{
+    ViewData["Title"] = "Razor Conditionals";
+    int currentHour = DateTime.Now.Hour; // Get current hour (0-23)
+    bool isWeekend = DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday;
+}
+
+<h1>Razor Conditional Examples</h1>
+
+<h2>Time-Based Greeting:</h2>
+@if (currentHour < 12)
+{
+    <p>Good morning!</p>
+}
+else if (currentHour < 18)
+{
+    <p>Good afternoon!</p>
+}
+else
+{
+    <p>Good evening!</p>
+}
+
+<h2>Weekend Status:</h2>
+@if (isWeekend)
+{
+    <p>It's the weekend! Time to relax.</p>
+}
+else
+{
+    <p>It's a weekday. Keep up the hard work!</p>
+}
+
+<h2>Number Check:</h2>
+@{
+    int myNumber = 8;
+}
+@if (myNumber % 2 == 0)
+{
+    <p>The number @myNumber is even.</p>
+}
+else
+{
+    <p>The number @myNumber is odd.</p>
+}
+
+@* Style using hour and conditionals *@
+@{
+    string dayColor = "";
+}
+@if(DateTime.Now.Hour < 17)
+{
+    dayColor = "orange";
+}
+else{
+    dayColor = "blue";
+}
+
+<h2 style="color: @dayColor">Day of the Week:</h2>
+@{
+    DayOfWeek today = DateTime.Now.DayOfWeek;
+}
+@switch (today)
+{
+    case DayOfWeek.Monday:
+        <p>It's Monday. Start of the week!</p>
+        break;
+    case DayOfWeek.Friday:
+        <p>It's Friday! Almost the weekend.</p>
+        break;
+    case DayOfWeek.Saturday:
+    case DayOfWeek.Sunday:
+        <p>It's the weekend!</p>
+        break;
+    default:
+        <p>It's a regular weekday.</p>
+        break;
+}

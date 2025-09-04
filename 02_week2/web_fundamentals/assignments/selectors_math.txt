@@ -1,0 +1,27 @@
+Inline styles: 1000 points
+ID selectors: 100 points
+Class, attribute, and pseudo-class selectors: 10 points
+Element and pseudo-element selectors: 1 point
+
+-div p
+-#main .highlight
+-ul > li a
+-article h2 + p
+-nav#site-nav ul li.active a
+-section#hero .intro .cta-button
+-body.homepage header nav > ul > li:first-child a
+
+
+-1(element) + 1(element) = 2
+-100(ID) + 10(class) = 110
+-1(element) + 1(element) + 1(element) = 3
+-1(element) + 1(element) + 1(element) = 3
+-101(element, ID) + 1(element) +  11(element, class) + 1(element) = 114
+-101(element, ID) + 10(class) + 10(class) = 121
+-11(element, class) + 1(element) + 1(element) + 1(element) + 11(element, class) + 1(element) = 26
+
+selector that beats all:
+
+- #home_card #card_title
+
+beats all because 2 ID's would give 200 points

@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gap{
+    gap: 20px;
+}
+
+body{
+    background-color: rgb(30, 15, 44);
+    flex-direction: column;
+}
+
+
+/* header */
+
+header{
+    background-color: rgb(76, 63, 145);
+    color: white;
+    padding: 20px 40px;
+    width: 100%;
+}
+
+h1{
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 30px;
+}
+
+
+/* section */
+
+section{
+    padding: 20px 30px;
+    background-color: rgb(30, 15, 44);
+    max-width: 1000px;
+
+}
+
+/* Main */
+
+main{
+    flex-direction: column;
+    flex: 3;
+}
+
+.post{
+    background-color: rgb(41, 30, 62);
+    color: white;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.profile{
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.scrying{
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.scrying > button{
+    background-color: rgb(244, 63, 94);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.pfp1{
+    background-image: url("images/elyndra-willowstep.png");
+}
+.pfp2{
+    background-image: url("images/drakthorn.png");
+}
+.pfp3{
+    background-image: url("images/mycomage.png");
+}
+
+.pfp1,
+.pfp2,
+.pfp3{
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 25px;
+}
+
+/* Aside */
+
+aside{
+    align-self: flex-start;
+    flex: 1;
+}
+
+aside img{
+    border-radius: 50%;
+    border: 1px solid rgb(112, 86, 164);
+}
+
+h2{
+    color: rgb(195, 181, 250);
+}
+
+.card{
+    background-color: rgb(59, 42, 94);
+    flex-direction: column;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+}

@@ -1,0 +1,16 @@
+@* Views/Shared/_ProductCard.cshtml *@
+@model ModelPractice.Models.Product
+@* @model Product *@ 
+@* ^ this line also works*@
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">Price: @Model.Price.ToString("C")</p>
+        @if (Model.IsOnSale)
+        {
+            <span class="badge text-bg-danger">ON SALE!</span> @* does not show up because text is white and bg does not render*@
+            <span>ON SALE!</span>
+        }
+    </div>
+</div>

@@ -1,0 +1,18 @@
+p{
+    padding: 10px;
+    width: fit-content;
+    font-family: sans-serif;
+}
+
+.success{
+    background-color: greenyellow;
+    color: green;
+}
+.warning{
+    background-color: yellow;
+    color: orange;
+}
+.error{
+    background-color: rgba(255, 0, 0, 0.218);
+    color: red;
+}

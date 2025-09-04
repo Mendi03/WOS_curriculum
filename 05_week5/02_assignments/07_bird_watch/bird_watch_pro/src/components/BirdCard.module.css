@@ -1,0 +1,29 @@
+img{
+    width: 100%;
+    border: solid 3px #004030;
+    border-radius: 10px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #4A9782;
+    width: 350px;
+    border-radius: 20px;
+    border: solid 1px #FFF9E5;
+    height: 500px;
+}
+
+.cardBottom{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+button{
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+}

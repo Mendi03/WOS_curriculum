@@ -1,0 +1,29 @@
+@* Views/Home/RegisterMusician.cshtml *@
+@model ViewModelPractice.ViewModels.MusicianRegistrationViewModel
+
+@{
+    ViewData["Title"] = "Musician Registration";
+}
+
+<h2>Musician Registration Form</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-controller="Home" asp-action="RegisterMusician" method="post">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Musician Name:</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="YearsExperience" class="form-label">Years Experience:</label>
+        <input asp-for="YearsExperience" class="form-control" />
+        <span asp-validation-for="YearsExperience" class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Instrument" class="form-label">Instrument:</label>
+        <input asp-for="Instrument" class="form-control" />
+        <span asp-validation-for="Instrument" class="form-text text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

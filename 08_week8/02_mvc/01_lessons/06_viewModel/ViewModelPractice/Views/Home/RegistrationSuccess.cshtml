@@ -1,0 +1,18 @@
+@* Views/Home/RegistrationSuccess.cshtml *@
+@{
+    ViewData["Title"] = "Registration Successful";
+}
+
+<h1>Registration Successful</h1>
+<p>Thank you for registering!</p>
+
+@if (ViewBag.Name != null && ViewBag.YearsExperience != null && ViewBag.Instrument != null)
+{
+    <p>Name: <strong>@ViewBag.Name</strong></p>
+    <p>Years Experience: <strong>@ViewBag.YearsExperience</strong></p>
+    <p>Instrument: <strong>@ViewBag.Instrument</strong></p>
+}
+else
+{
+    <p>No registration data found in session.</p>
+}

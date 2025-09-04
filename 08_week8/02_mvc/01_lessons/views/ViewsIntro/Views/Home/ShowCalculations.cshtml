@@ -1,0 +1,15 @@
+@* Views/Home/ShowInterpolationData.cshtml *@
+@{
+    ViewData["Title"] = "Razor Interpolation"; // Sets the page title
+}
+
+@{
+    string pageTitle = "My Dynamic Page";
+    Console.WriteLine($"View rendered at: {DateTime.Now}");
+}
+
+<h1>@pageTitle</h1>
+
+<p>Current Month Number: @DateTime.Now.Month</p>
+<p>The length of the string "Razor": @("Razor".Length)</p>
+<p>The result of 15 * 3 = @(15 * 3)</p>

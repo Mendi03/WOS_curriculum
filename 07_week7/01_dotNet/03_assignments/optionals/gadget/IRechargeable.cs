@@ -1,0 +1,4 @@
+interface IRechargeable
+{
+    void Recharge();
+}

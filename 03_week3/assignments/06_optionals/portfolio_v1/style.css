@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: whitesmoke;
+}
+
+body{
+    background-color: rgb(8, 0, 78);
+}
+
+header{
+    background-color: rgb(4, 0, 40);
+    padding: 20px;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gap{
+    gap: 20px;
+}
+
+/* header */
+
+nav > ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* main */
+main {
+    flex-direction: column;
+    align-items: flex-start !important;
+    padding: 20px;
+}
+
+    /* about */
+
+.card{
+    flex-direction: column;
+    max-width: 300px;
+    background-color: rgb(5, 0, 52);
+}
+
+.education{
+    background-color: rgb(5, 0, 52);
+}
+

@@ -1,0 +1,182 @@
+[
+  {
+    "movieId": 1,
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "genre": "Sci-Fi",
+    "releaseDate": "2010-07-16",
+    "rating": 8.8,
+    "durationInMinutes": 148
+  },
+  {
+    "movieId": 2,
+    "title": "The Godfather",
+    "director": "Francis Ford Coppola",
+    "genre": "Crime",
+    "releaseDate": "1972-03-24",
+    "rating": 9.2,
+    "durationInMinutes": 175
+  },
+  {
+    "movieId": 3,
+    "title": "The Dark Knight",
+    "director": "Christopher Nolan",
+    "genre": "Action",
+    "releaseDate": "2008-07-18",
+    "rating": 9.0,
+    "durationInMinutes": 152
+  },
+  {
+    "movieId": 4,
+    "title": "Pulp Fiction",
+    "director": "Quentin Tarantino",
+    "genre": "Crime",
+    "releaseDate": "1994-10-14",
+    "rating": 8.9,
+    "durationInMinutes": 154
+  },
+  {
+    "movieId": 5,
+    "title": "Schindler's List",
+    "director": "Steven Spielberg",
+    "genre": "Biography",
+    "releaseDate": "1993-12-15",
+    "rating": 8.9,
+    "durationInMinutes": 195
+  },
+  {
+    "movieId": 6,
+    "title": "The Shawshank Redemption",
+    "director": "Frank Darabont",
+    "genre": "Drama",
+    "releaseDate": "1994-09-23",
+    "rating": 9.3,
+    "durationInMinutes": 142
+  },
+  {
+    "movieId": 7,
+    "title": "Forrest Gump",
+    "director": "Robert Zemeckis",
+    "genre": "Drama",
+    "releaseDate": "1994-07-06",
+    "rating": 8.8,
+    "durationInMinutes": 142
+  },
+  {
+    "movieId": 8,
+    "title": "Fight Club",
+    "director": "David Fincher",
+    "genre": "Drama",
+    "releaseDate": "1999-10-15",
+    "rating": 8.8,
+    "durationInMinutes": 139
+  },
+  {
+    "movieId": 9,
+    "title": "The Matrix",
+    "director": "Lana Wachowski, Lilly Wachowski",
+    "genre": "Sci-Fi",
+    "releaseDate": "1999-03-31",
+    "rating": 8.7,
+    "durationInMinutes": 136
+  },
+  {
+    "movieId": 10,
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "director": "Peter Jackson",
+    "genre": "Fantasy",
+    "releaseDate": "2001-12-19",
+    "rating": 8.8,
+    "durationInMinutes": 178
+  },
+  {
+    "movieId": 11,
+    "title": "The Room",
+    "director": "Tommy Wiseau",
+    "genre": "Drama",
+    "releaseDate": "2003-06-27",
+    "rating": 3.7,
+    "durationInMinutes": 99
+  },
+  {
+    "movieId": 12,
+    "title": "Battlefield Earth",
+    "director": "Roger Christian",
+    "genre": "Sci-Fi",
+    "releaseDate": "2000-05-12",
+    "rating": 2.5,
+    "durationInMinutes": 118
+  },
+  {
+    "movieId": 13,
+    "title": "Cats",
+    "director": "Tom Hooper",
+    "genre": "Musical",
+    "releaseDate": "2019-12-20",
+    "rating": 2.8,
+    "durationInMinutes": 110
+  },
+  {
+    "movieId": 14,
+    "title": "Gigli",
+    "director": "Martin Brest",
+    "genre": "Romance",
+    "releaseDate": "2003-08-01",
+    "rating": 2.6,
+    "durationInMinutes": 121
+  },
+  {
+    "movieId": 15,
+    "title": "Batman & Robin",
+    "director": "Joel Schumacher",
+    "genre": "Action",
+    "releaseDate": "1997-06-20",
+    "rating": 3.8,
+    "durationInMinutes": 125
+  },
+  {
+    "movieId": 16,
+    "title": "The Love Guru",
+    "director": "Marco Schnabel",
+    "genre": "Comedy",
+    "releaseDate": "2008-06-20",
+    "rating": 3.8,
+    "durationInMinutes": 87
+  },
+  {
+    "movieId": 17,
+    "title": "Movie 43",
+    "director": "Various",
+    "genre": "Comedy",
+    "releaseDate": "2013-01-25",
+    "rating": 4.3,
+    "durationInMinutes": 94
+  },
+  {
+    "movieId": 18,
+    "title": "Dragonball Evolution",
+    "director": "James Wong",
+    "genre": "Action",
+    "releaseDate": "2009-04-10",
+    "rating": 2.5,
+    "durationInMinutes": 85
+  },
+  {
+    "movieId": 19,
+    "title": "Fifty Shades of Grey",
+    "director": "Sam Taylor-Johnson",
+    "genre": "Romance",
+    "releaseDate": "2015-02-13",
+    "rating": 4.1,
+    "durationInMinutes": 125
+  },
+  {
+    "movieId": 20,
+    "title": "Pixels",
+    "director": "Chris Columbus",
+    "genre": "Comedy",
+    "releaseDate": "2015-07-24",
+    "rating": 5.6,
+    "durationInMinutes": 106
+  }
+]

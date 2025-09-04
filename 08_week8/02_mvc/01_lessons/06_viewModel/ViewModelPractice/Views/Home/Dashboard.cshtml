@@ -1,0 +1,11 @@
+@model ViewModelPractice.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+
+    var info = Model;
+}
+
+<h1>@info.UserName</h1>
+<h1>@info.TotalItems</h1>
+<h1>@info.LastLogin</h1>

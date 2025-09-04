@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: flex-start;
+}
+
+section{
+    flex-direction: row-reverse;
+    margin: 20px;
+}
+
+/* main & aside*/
+
+h1{
+    background-color: rgb(23, 23, 23); 
+    color: white;
+    padding: 20px;
+    border: 2px solid rgb(23, 23, 23);
+}
+
+main{
+    flex: 3;
+}
+
+aside{
+    flex: 1;
+}
+
+main > .flex-container{
+    justify-content: center;
+}
+
+h3{
+    font-size: 40px;
+}
+
+main,
+aside div{
+    border: 2px solid rgb(23, 23, 23);
+    padding: 20px;
+
+}
+
+main,
+aside{
+    flex-direction: column;
+}
+
+.gap{
+    gap: 20px;
+}
+
+h2,
+h4{
+    margin-bottom: 20px;
+}
+
+aside > button{
+    padding: 5px;
+    border: 2px solid rgb(23, 23, 23);
+    border-radius: 5px;
+    background-color: skyblue;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+}

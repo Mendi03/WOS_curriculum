@@ -1,0 +1,32 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: #800081;
+    font-family: sans;
+    font-weight: bolder;
+}
+
+.top strong{
+    color: blue;
+    font-weight: bold;
+}
+
+.announcement{
+    text-align: right;
+}
+
+.announcement p{
+    background-color: #0e008b;
+    color: rgb(227, 227, 227);
+    padding: 1%;
+    text-align: center;
+    font-weight: 100;
+}
+
+.announcement span{
+    color: white;
+    font-weight: bold;
+}
+

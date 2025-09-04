@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+button{
+    cursor: pointer;
+}
+
+body{
+    background-color:aliceblue;
+    
+}
+
+header{
+    background-color: aquamarine;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+}

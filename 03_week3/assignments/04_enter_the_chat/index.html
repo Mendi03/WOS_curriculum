@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <section class="flex-container">
+      <div class="card flex-container">
+        <h1>Enter the Chat</h1>
+        <form action="">
+          <label for="name">Your Name</label>
+          <input type="text" name="name" id="name" placeholder="Scrybr User" />
+          <label for="class">Choose Your Class</label>
+          <select name="class" id="class">
+            <option selected disabled hidden>--Select a Class--</option>
+            <option value="Bard">Bard</option>
+            <option value="Elf">Elf</option>
+            <option value="Demon">Demon</option>
+            <option value="Mage">Mage</option>
+          </select>
+          <button onclick="welcome()" type="button">Enter Chat</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+@model HeroForm.ViewModels.HeroRegistrationViewModel
+
+@{
+    ViewData["Title"] = "Hero Registration";
+}
+
+<div class="card p-3">
+    <h2>Hero Registration Form</h2>
+    
+    @* Display validation summary (optional, but a good practice) *@
+    <div asp-validation-summary="All" class="text-danger"></div>
+    
+    <form asp-controller="Hero" asp-action="Register" method="post">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Hero Name:</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="form-text text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="HeroType" class="form-label">Hero Type:</label>
+            <input asp-for="HeroType" class="form-control" />
+            <span asp-validation-for="HeroType" class="form-text text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Level" class="form-label">Level:</label>
+            <input asp-for="Level" class="form-control" />
+            <span asp-validation-for="Level" class="form-text text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email:</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="form-text text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>

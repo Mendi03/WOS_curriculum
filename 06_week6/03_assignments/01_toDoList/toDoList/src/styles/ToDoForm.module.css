@@ -1,0 +1,23 @@
+form{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: lightcyan;
+    gap: 20px;
+}
+
+form > div{
+    width: 100%;
+}
+
+form input{
+    padding: 5px 10px;
+    width: 100%;
+    height: 40px;
+}
+
+form > button{
+    width: 100px;
+    height: 40px;
+}

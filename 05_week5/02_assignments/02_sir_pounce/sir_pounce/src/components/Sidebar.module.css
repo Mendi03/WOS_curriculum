@@ -1,0 +1,22 @@
+aside{
+    border: 2px solid black;
+    height: fit-content;
+}
+
+h2{
+    margin: 0;
+    background-color: gainsboro;
+    font-size: 1rem;
+    padding: 5px;
+    border-bottom: 2px solid black;
+}
+
+nav ul{
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+}
+
+nav ul a{
+    color: rgb(38, 104, 161);
+}

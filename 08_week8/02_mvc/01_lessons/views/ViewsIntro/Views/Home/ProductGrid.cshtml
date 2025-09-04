@@ -1,0 +1,43 @@
+@* Views/Home/ShowForEachLoop.cshtml (add to the bottom) *@
+
+<h2>Mixed Content Loop:</h2>
+@{
+    List<string> items = new List<string> { "Laptop", "Monitor", "Keyboard" };
+}
+<div class="product-list">
+    @foreach (var item in items)
+    {
+        <div class="product-card">
+            <h3>@item</h3>
+            @if (item == "Laptop") @* Conditional inside loop *@
+            {
+                <p>High Demand!</p>
+            }
+            <button>Add to Cart</button>
+        </div>
+    }
+</div>
+
+@* Dynamic tables: *@
+
+@{
+    string[] names = { "Alice", "Bob" }; 
+    int[] ages = { 25, 30 };
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(int i = 0; i < names.Length; i++){
+            <tr>
+                <td>@names[i]</td>
+                <td>@ages[i]</td>
+            </tr>
+        }
+    </tbody>
+</table>

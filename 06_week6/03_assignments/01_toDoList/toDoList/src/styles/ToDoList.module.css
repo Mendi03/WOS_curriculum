@@ -1,0 +1,35 @@
+.top{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: cornflowerblue;
+
+}
+
+.top > button{
+    width: 120px;
+    height: fit-content;
+    padding: 5px 10px;
+    background-color: gold;
+}
+
+.bottom{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: lightblue;
+    max-width: 900px;
+}
+
+h2{
+    margin: 0;
+}

@@ -1,0 +1,30 @@
+@* Views/Home/ProductDetails.cshtml *@
+@model ViewModelPractice.ViewModels.ProductDetailsViewModel
+
+@{
+    // We can set the page title dynamically from the model
+    ViewData["Title"] = Model.ProductName;
+}
+
+<h1>Product Details</h1>
+
+<h2>@Model.ProductName</h2>
+<p>ID: @Model.ProductId</p>
+<p>Price: @Model.Price.ToString("C")</p>
+
+@if (Model.InStock)
+{
+    <p style="color: green;">Status: In Stock</p>
+}
+else
+{
+    <p style="color: red;">Status: Out of Stock</p>
+}
+
+<h3>Features:</h3>
+<ul>
+    @foreach (var feature in Model.Features)
+    {
+        <li>@feature</li>
+    }
+</ul>

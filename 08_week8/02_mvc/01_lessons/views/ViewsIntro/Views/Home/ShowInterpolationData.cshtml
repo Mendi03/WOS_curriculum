@@ -1,0 +1,12 @@
+@* Views/Home/ShowInterpolationData.cshtml *@
+@{
+    ViewData["Title"] = "Razor Interpolation"; // Sets the page title
+}
+
+<h1>Razor Interpolation Examples</h1>
+
+<p>Current Date: @DateTime.Now.ToShortDateString()</p>
+<p>Current Time: @DateTime.Now.ToLongTimeString()</p>
+<p>Sum of 10 + 5: @(10 + 5)</p>
+<p>Is 7 greater than 3? @(7 > 3)</p>
+<p>Product Name (from literal): @("My Awesome Gadget")</p>

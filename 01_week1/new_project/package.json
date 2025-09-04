@@ -1,0 +1,15 @@
+{
+  "name": "new_project",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Test project for demos purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Salvador Mendiola",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}

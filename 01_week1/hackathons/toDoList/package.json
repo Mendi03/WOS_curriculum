@@ -1,0 +1,14 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "Simple tosdolist project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Salvador and others",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}

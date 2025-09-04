@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+section{
+    background-image: url("earworm-headphones-files/gradient.jpg");
+    background-size: cover;
+    padding: 20px;
+    /* width: fit-content; */
+
+}
+
+img{
+    width: 350px;
+    /* border-radius: 20px; */
+}
+
+.card {
+    margin: 0px auto;
+    width: 350px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid rgb(172, 172, 172);
+    overflow: hidden;
+}
+
+#titles{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#titles h3, 
+#titles h4 {
+    margin: 0px;
+}
+
+#titles h3{
+    font-weight: bolder;
+    font-size: 25px;
+    letter-spacing: 0.3px;
+}
+
+#titles h4{
+    color: gray;
+    font-weight: lighter;
+}
+
+.bottom-section{
+    padding: 20px;
+}
+
+.bottom-card{
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+    align-items: center;
+    font-size: 14px;
+}
+
+button{
+    background-color: #ffd602;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+button:hover {
+    box-shadow: 0 0 3px black;
+    
+}
