@@ -1,8 +1,5 @@
-// Controllers/MoviesController.cs
 using Microsoft.AspNetCore.Mvc;
-using MovieApi.Classes; // Your Serializer and Movie classes
-using System.Text.Json; // For JSON serialization
-using System.Collections.Generic; // For List<T>
+using MovieApi.Models;
 
 namespace MovieApi.Controllers;
 
@@ -10,115 +7,103 @@ namespace MovieApi.Controllers;
 [Route("api/movies")]
 public class MoviesController : ControllerBase
 {
-    private static readonly List<Movie> _movies = Movie.GetMovies();
-    // _movies = Movie.GetMovies();
+    private readonly MovieContext _context;
 
-    // Action method to get all movies
-    [HttpGet]
+    public MoviesController(MovieContext context)
+    {
+        _context = context;
+    }
+
+    [HttpGet("")]
     public ActionResult<List<Movie>> GetAllMovies()
     {
-        if (_movies.Count == 0)
+        if (!_context.Movies.Any())
         {
-            return NotFound("No movies found."); // Returns a 404 Not Found status code
+            return NotFound("No movies found.");
         }
-        return Ok(_movies); // Returns a 200 OK status code with the movie list
+
+        var movies = _context.Movies.ToList();
+        return Ok(movies);
     }
+
     [HttpGet("{id}")]
-    public ActionResult<Movie> GetMovieById(int id)
+    public ActionResult<Movie> GetOneMovie(int id)
     {
-        // Use LINQ to find the movie with the matching ID
-        var movie = _movies.FirstOrDefault(m => m.MovieId == id);
-
-        if (movie is null)
+        var maybeMovie = _context.Movies.FirstOrDefault((movie) => movie.Id == id);
+        if (maybeMovie is null)
         {
-            return NotFound("Movie not found."); // Returns 404 Not Found
+            return NotFound();
+        }
+        return Ok(maybeMovie);
+    }
+
+    [HttpGet("search")]
+    public ActionResult<List<Movie>> Search(string? keyword, double? minRating)
+    {
+        var query = _context.Movies.AsQueryable();
+
+        if (!string.IsNullOrEmpty(keyword))
+        {
+            query = query.Where(
+                (movie) => movie.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase)
+            );
         }
 
-        return Ok(movie); // Returns 200 OK with the movie object
+        if (minRating.HasValue)
+        {
+            query = query.Where(m => m.Rating >= minRating.Value);
+        }
+
+        var results = query.ToList();
+
+        if (results.Count == 0)
+        {
+            return NotFound("No movies found matching the search criteria.");
+        }
+        return Ok(results);
     }
-    // Controllers/MoviesController.cs (inside MoviesController class)
 
-    // [HttpGet("search")]
-    // public ActionResult<List<Movie>> Search(string? keyword, int? minRating)
-    // {
-    //     var query = _movies.AsQueryable();
+    [HttpPost("")]
+    public ActionResult<Movie> CreateMovie([FromBody] Movie newMovie)
+    {
+        var nextId = _context.Movies.Count() == 0 ? 1 : _context.Movies.Max((m) => m.Id) + 1;
+        newMovie.Id = nextId;
 
-    //     if (!string.IsNullOrEmpty(keyword))
-    //     {
-    //         query = query.Where(m => m.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase));
-    //     }
+        _context.Movies.Add(newMovie);
+        return CreatedAtAction(nameof(GetOneMovie), new { id = nextId }, newMovie);
+    }
 
-    //     if (minRating.HasValue)
-    //     {
-    //         query = query.Where(m => m.Rating >= minRating.Value);
-    //     }
+    [HttpPut("{id}")]
+    public IActionResult UpdateMovie(int id, [FromBody] Movie updatedMovie)
+    {
+        if (id != updatedMovie.Id)
+        {
+            return BadRequest("Movie ID in the URL does not match the ID in the request body.");
+        }
 
-    //     var results = query.ToList();
+        var maybeMovie = _context.Movies.FirstOrDefault((m) => m.Id == id);
+        if (maybeMovie is null)
+        {
+            return NotFound("Movie not found.");
+        }
 
-    //     if (results.Count == 0)
-    //     {
-    //         return NotFound("No movies found matching the search criteria.");
-    //     }
-    //     return Ok(results);
-    // }
-    // [HttpPost("")]
-    // public ActionResult<Movie> CreateMovie([FromBody] Movie newMovie)
-    // {
-    //     // 1. Auto-generate a new ID for the movie
-    //     // This is a simple LINQ approach for an in-memory list
-    //     var nextId = _movies.Count != 0 ? _movies.Max(m => m.MovieId) + 1 : 1;
-    //     newMovie.MovieId = nextId;
+        // var movieIndex = _context.Movies.IndexOf(maybeMovie);
+        // _context.Movies[movieIndex] = updatedMovie;
 
-    //     // 2. Add the new movie to our in-memory list
-    //     _movies.Add(newMovie);
+        return NoContent();
+    }
 
-    //     // 3. Return a success response
-    //     // The CreatedAtAction helper method returns a 201 Created status code
-    //     return CreatedAtAction(nameof(GetMovieById), new { id = newMovie.MovieId }, newMovie);
-    // }
+    [HttpDelete("{id}")]
+    public IActionResult DeleteMovie(int id)
+    {
+        var movieToRemove = _context.Movies.FirstOrDefault(m => m.Id == id);
 
-    // [HttpPut("{id}")]
-    // public IActionResult UpdateMovie(int id, [FromBody] Movie updatedMovie)
-    // {
-    //     // 1. Check if the provided ID from the URL matches the ID in the request body
-    //     if (id != updatedMovie.MovieId)
-    //     {
-    //         return BadRequest("Movie ID in the URL does not match the ID in the request body.");
-    //     }
+        if (movieToRemove is null)
+        {
+            return NotFound("Movie not found.");
+        }
 
-    //     // 2. Find the existing movie in our list
-    //     var existingMovie = _movies.FirstOrDefault(m => m.MovieId == id);
-
-    //     if (existingMovie == null)
-    //     {
-    //         return NotFound("Movie not found.");
-    //     }
-
-    //     // 3. Update the movie with the new data
-    //     var movieIndex = _movies.IndexOf(existingMovie);
-    //     _movies[movieIndex] = updatedMovie;
-
-    //     // 4. Return a success response
-    //     // NoContent returns a 204 status code, which is the standard for a successful PUT
-    //     return NoContent();
-    // }
-
-    // [HttpDelete("{id}")]
-    // public IActionResult DeleteMovie(int id)
-    // {
-    //     // 1. Find the movie to remove using its ID
-    //     var movieToRemove = _movies.FirstOrDefault(m => m.MovieId == id);
-
-    //     if (movieToRemove is null)
-    //     {
-    //         return NotFound("Movie not found.");
-    //     }
-
-    //     // 2. Remove the movie from the list
-    //     _movies.Remove(movieToRemove);
-
-    //     // 3. Return a success response
-    //     // NoContent returns a 204 status code, which is the standard for a successful DELETE
-    //     return NoContent();
-    // }
+        _context.Movies.Remove(movieToRemove);
+        return NoContent();
+    }
 }

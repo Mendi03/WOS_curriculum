@@ -8,7 +8,7 @@ node_modules/
 *.webp
 *.docx
 *.exe
-
+*appsettings.json
 # Ignored folders under week 2:
 02_week2/professional_development/
 
