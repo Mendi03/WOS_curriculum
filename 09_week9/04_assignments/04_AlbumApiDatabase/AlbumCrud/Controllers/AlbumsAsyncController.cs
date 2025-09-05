@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace AlbumCrud.Controllers;
 
 [ApiController]
-[Route("api/albums")]
-public class AlbumsController : ControllerBase
+[Route("async/api/albums")]
+public class AlbumsAsyncController : ControllerBase
 {
     private readonly AlbumContext _context;
 
-    public AlbumsController(AlbumContext context)
+    public AlbumsAsyncController(AlbumContext context)
     {
         _context = context;
     }

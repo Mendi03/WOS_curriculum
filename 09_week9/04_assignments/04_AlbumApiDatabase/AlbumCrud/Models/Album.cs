@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace AlbumCrud.Models;
 
 public class Album
 {
+    [Key]
     public int Id { get; set; }
     public int Rank { get; set; }
     public string Artist { get; set; } = "";
