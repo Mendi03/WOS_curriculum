@@ -70,6 +70,8 @@ public class MoviesController : ControllerBase
         newMovie.Id = nextId;
 
         _context.Movies.Add(newMovie);
+        _context.SaveChanges();
+
         return CreatedAtAction(nameof(GetOneMovie), new { id = nextId }, newMovie);
     }
 
@@ -81,14 +83,23 @@ public class MoviesController : ControllerBase
             return BadRequest("Movie ID in the URL does not match the ID in the request body.");
         }
 
-        var maybeMovie = _context.Movies.FirstOrDefault((m) => m.Id == id);
-        if (maybeMovie is null)
+        var existingMovie = _context.Movies.FirstOrDefault((m) => m.Id == id);
+        if (existingMovie is null)
         {
             return NotFound("Movie not found.");
         }
 
-        // var movieIndex = _context.Movies.IndexOf(maybeMovie);
+        // var movieIndex = _context.Movies.IndexOf(existingMovie);
         // _context.Movies[movieIndex] = updatedMovie;
+        existingMovie.Title = updatedMovie.Title;
+        existingMovie.Director = updatedMovie.Director;
+        existingMovie.Genre = updatedMovie.Genre;
+        existingMovie.ReleaseDate = updatedMovie.ReleaseDate;
+        existingMovie.Rating = updatedMovie.Rating;
+        existingMovie.DurationInMinutes = updatedMovie.DurationInMinutes;
+        existingMovie.UpdatedAt = DateTime.UtcNow;
+
+        _context.SaveChanges();
 
         return NoContent();
     }
@@ -104,6 +115,8 @@ public class MoviesController : ControllerBase
         }
 
         _context.Movies.Remove(movieToRemove);
+        _context.SaveChanges();
+
         return NoContent();
     }
 }
