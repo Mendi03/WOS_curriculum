@@ -15,7 +15,7 @@ public class AlbumsController : ControllerBase
     }
 
     // Action method to get all Albums
-    [HttpGet]
+    [HttpGet("")]
     public ActionResult<List<Album>> GetAllAlbums()
     {
         if (!_context.Albums.Any())

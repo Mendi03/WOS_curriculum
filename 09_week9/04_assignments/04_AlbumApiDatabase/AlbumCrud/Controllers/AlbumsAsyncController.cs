@@ -1,5 +1,6 @@
 using AlbumCrud.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlbumCrud.Controllers;
 
@@ -15,23 +16,23 @@ public class AlbumsAsyncController : ControllerBase
     }
 
     // Action method to get all Albums
-    [HttpGet]
-    public ActionResult<List<Album>> GetAllAlbums()
+    [HttpGet("")]
+    public async Task<ActionResult<List<Album>>> GetAllAlbums()
     {
         if (!_context.Albums.Any())
         {
             return NotFound("No movies found.");
         }
 
-        var movies = _context.Albums.ToList();
+        var movies = await _context.Albums.ToListAsync();
         return Ok(movies); // Returns a 200 OK status code with the Album list
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Album> GetAlbumById(int id)
+    public async Task<ActionResult<Album>> GetAlbumById(int id)
     {
         // Use LINQ to find the Album with the matching ID
-        var Album = _context.Albums.FirstOrDefault(album => album.Id == id);
+        var Album = await _context.Albums.FirstOrDefaultAsync(album => album.Id == id);
 
         if (Album is null)
         {
@@ -41,7 +42,7 @@ public class AlbumsAsyncController : ControllerBase
         return Ok(Album); // Returns 200 OK with the Album object
     }
     [HttpGet("filter")]
-    public ActionResult<Album> GetAlbumByGenre(string? genre)
+    public async Task<ActionResult<Album>> GetAlbumByGenre(string? genre)
     {
         var query = _context.Albums.AsQueryable();
 
@@ -50,7 +51,7 @@ public class AlbumsAsyncController : ControllerBase
             query = query.Where(album => album.Genre.Contains(genre));
         }
 
-        var results = query.ToList();
+        var results = await query.ToListAsync();
 
         if (results.Count == 0)
         {
@@ -60,7 +61,7 @@ public class AlbumsAsyncController : ControllerBase
     }
 
     [HttpGet("search")]
-    public ActionResult<List<Album>> Search(string? term)
+    public async Task<ActionResult<List<Album>>> Search(string? term)
     {
         var query = _context.Albums.AsQueryable();
 
@@ -69,7 +70,7 @@ public class AlbumsAsyncController : ControllerBase
             query = query.Where(album => album.AlbumTitle.Contains(term) || album.Artist.Contains(term));
         }
 
-        var results = query.ToList();
+        var results = await query.ToListAsync();
 
         if (results.Count == 0)
         {
@@ -79,7 +80,7 @@ public class AlbumsAsyncController : ControllerBase
     }
 
     [HttpPost("")]
-    public ActionResult<Album> CreateAlbum([FromBody] Album newAlbum)
+    public async Task<ActionResult<Album>> CreateAlbum([FromBody] Album newAlbum)
     {
         // 1. Auto-generate a new ID for the Album
         // This is a simple LINQ approach for an in-memory list
@@ -89,8 +90,8 @@ public class AlbumsAsyncController : ControllerBase
         // 2. Add the new Album to our in-memory list
 
 
-        _context.Albums.Add(newAlbum);
-        _context.SaveChanges();
+        await _context.Albums.AddAsync(newAlbum);
+        await _context.SaveChangesAsync();
 
         // 3. Return a success response
         // The CreatedAtAction helper method returns a 201 Created status code
@@ -99,7 +100,7 @@ public class AlbumsAsyncController : ControllerBase
     }
 
     [HttpPost("add/albums")]
-    public ActionResult<List<Album>> CreateAlbums([FromBody] List<Album> newAlbums)
+    public async Task<ActionResult<List<Album>>> CreateAlbums([FromBody] List<Album> newAlbums)
     {
         // 1. Auto-generate a new ID for the Album
         // This is a simple LINQ approach for an in-memory list
@@ -109,10 +110,10 @@ public class AlbumsAsyncController : ControllerBase
         // 2. Add the new Album to our in-memory list
         foreach (var album in newAlbums)
         {
-            _context.Albums.Add(album);
+            await _context.Albums.AddAsync(album);
         }
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         // 3. Return a success response
         // The CreatedAtAction helper method returns a 201 Created status code
@@ -120,7 +121,7 @@ public class AlbumsAsyncController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateAlbum(int id, [FromBody] Album updatedAlbum)
+    public async Task<IActionResult> UpdateAlbum(int id, [FromBody] Album updatedAlbum)
     {
         // 1. Check if the provided ID from the URL matches the ID in the request body
         if (id != updatedAlbum.Id)
@@ -129,7 +130,7 @@ public class AlbumsAsyncController : ControllerBase
         }
 
         // 2. Find the existing Album in our list
-        var existingAlbum = _context.Albums.FirstOrDefault(m => m.Id == id);
+        var existingAlbum = await _context.Albums.FirstOrDefaultAsync(m => m.Id == id);
 
         if (existingAlbum == null)
         {
@@ -144,7 +145,7 @@ public class AlbumsAsyncController : ControllerBase
         existingAlbum.AlbumTitle = updatedAlbum.AlbumTitle;
         existingAlbum.UpdatedAt = DateTime.UtcNow;
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         // 4. Return a success response
         // NoContent returns a 204 status code, which is the standard for a successful PUT
@@ -152,10 +153,10 @@ public class AlbumsAsyncController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeleteAlbum(int id)
+    public async Task<IActionResult> DeleteAlbum(int id)
     {
         // 1. Find the Album to remove using its ID
-        var AlbumToRemove = _context.Albums.FirstOrDefault(m => m.Id == id);
+        var AlbumToRemove = await _context.Albums.FirstOrDefaultAsync(m => m.Id == id);
 
         if (AlbumToRemove is null)
         {
@@ -164,7 +165,7 @@ public class AlbumsAsyncController : ControllerBase
 
         // 2. Remove the Album from the list
         _context.Albums.Remove(AlbumToRemove);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         // 3. Return a success response
         // NoContent returns a 204 status code, which is the standard for a successful DELETE
