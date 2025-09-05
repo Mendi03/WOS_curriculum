@@ -23,9 +23,11 @@ function hotPotato(names, k) {
     let iterations = k % queue.size();
 
 
-    for(let i = 0; i < iterations + 1; i++){
+    for(let i = 0; i < iterations; i++){
       queue.enqueue(queue.dequeue());
     }
+    // console.log(`${q.dequeue()} is out!`);
+
     queue.dequeue()
   }
 
