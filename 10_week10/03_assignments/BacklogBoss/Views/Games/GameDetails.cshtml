@@ -1,0 +1,26 @@
+@model GameViewModel
+
+@{
+    ViewData["Title"] = "GameDetails";
+    var game = Model;
+    Console.WriteLine($"{game.Platform} ---------------------------------------");
+}
+
+<h1>Game Details</h1>
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">@game.Title</h3>
+        <p class="card-text">
+            <strong>Platform:</strong> @game.Platform</br>
+            <strong>Completed:</strong> @game.IsComplete</br>
+            <strong>Notes:</strong> @game.Notes
+        </p>
+        <p class="card-text">
+            <a href="/games">Back to List</a>
+            |
+            <a href="/games/@game.Id/edit">Edit</a>
+            |
+            <a href="/games/@game.Id/delete">Delete</a>
+        </p>
+    </div>
+</div>

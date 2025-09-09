@@ -1,0 +1,37 @@
+@model GameViewModel
+
+@{
+    ViewData["Title"] = "Add a Game";
+    @* Console.WriteLine($"{Model.Platform} ---------------------------------------"); *@
+
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<h1>What would you like to change?</h1>
+<form asp-controller="Games" asp-action="UpdateGame" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Title"></label>
+        <input class="form-control" asp-for="Title">
+        <span class="form-text text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Platform"></label>
+        <input class="form-control" asp-for="Platform">
+        <span class="form-text text-danger" asp-validation-for="Platform"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="IsComplete">Have you completed this game?</label>
+        <input type="checkbox" asp-for="IsComplete">
+        <span class="form-text text-danger" asp-validation-for="IsComplete"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Notes"></label>
+        <textarea class="form-control" asp-for="Notes" rows="3"></textarea>
+        <span class="form-text text-danger" asp-validation-for="Notes"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

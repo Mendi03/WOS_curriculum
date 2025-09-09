@@ -1,0 +1,33 @@
+@model GamesIndexViewModel
+
+@{
+    ViewData["Title"] = "Backlog Boss";
+    var games = Model.Games;
+}
+
+<h1>Backlog Boss</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Platform</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var game in games)
+        {
+            <tr>
+                <td>@game.Title</td>
+                <td>@game.Platform</td>
+                <td>
+                    <a href="/games/@game.Id">View</a>
+                    <a href="/games/@game.Id/edit">Edit</a>
+                    <a href="/games/@game.Id/delete">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
