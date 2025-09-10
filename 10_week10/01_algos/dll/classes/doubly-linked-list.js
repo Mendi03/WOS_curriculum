@@ -59,15 +59,10 @@ class DoublyLinkedList {
    * @complexity O(1)
    */
   insertAtHead(val) {
-    // no nodes
-    // 1+ nodes
     const newNode = new DLLNode(val);
     if (this.isEmpty()) {
-      this.head = newNode;
-      this.tail = newNode;
+      this.head = this.tail = newNode;
     } else {
-      // point new node at head
-      // move head to new node
       newNode.next = this.head;
       this.head.prev = newNode;
       this.head = newNode;
@@ -81,29 +76,82 @@ class DoublyLinkedList {
    * @complexity O(1)
    */
   removeHead() {
-    // no nodes
-    // 1 node
-    // set head and tail to null return value
-    // 2 nodes
-    // move pointer forward to next node
-    // set currentnode.next to null
     if (this.isEmpty()) return null;
-    const currentVal = this.head.value;
-    if (this.head.next === null) {
-      this.head = null;
-      this.tail = null;
+    const removedValue = this.head.value;
+    if (this.head === this.tail) {
+      this.head = this.tail = null;
     } else {
-      const currentNode = this.head;
-      // (head) currentNode => <= node
       this.head = this.head.next;
-      // currentNode => <= (head) node
       this.head.prev = null;
-      // currentNode => (head) node
-      currentNode.next = null;
-      // currentNode X (head) node
     }
     this.length--;
-    return currentVal;
+    return removedValue;
+  }
+
+  /**
+   * Inserts a new node with the given value at the tail of the list.
+   * @param {any} val - The value to insert.
+   * @returns {void}
+   * @complexity O(1)
+   */
+  insertAtTail(val) {
+    let newNode = new DLLNode(val);
+
+    if (this.isEmpty()) {
+      this.head = newNode;
+      this.tail = newNode;
+    }
+    else{
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+
+    this.length++;
+  }
+
+  /**
+   * Removes and returns the value at the tail of the list.
+   * @returns {any} The value removed, or null if the list is empty.
+   * @complexity O(1)
+   */
+  removeTail() {
+    if (!this.tail) return null;
+    
+    let removedValue = this.tail.value;
+
+    if(this.length == 1){
+      this.head = null;
+      this.tail = null;
+    }
+    else{
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+    }
+    
+    this.length--;
+
+    return removedValue;
+  }
+
+  /**
+   * Finds the first node with the specified value.
+   * @param {any} val - The value to search for.
+   * @returns {DLLNode|null} The found node, or null if not found.
+   * @complexity O(n)
+   */
+  find(val) {
+    let runner = this.head;
+
+    while (runner) {
+      if (runner.value == val) {
+        return runner;
+      }
+      
+      runner = runner.next;
+    }
+
+    return null;
   }
 
   /**
@@ -112,13 +160,13 @@ class DoublyLinkedList {
    * @complexity O(n)
    */
   toArray() {
-    let runner = this.head;
-    const retArr = [];
-    while (runner) {
-      retArr.push(runner.value);
-      runner = runner.next;
+    const arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.value);
+      current = current.next;
     }
-    return retArr;
+    return arr;
   }
 }
 
