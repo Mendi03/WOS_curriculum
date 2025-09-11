@@ -1,9 +1,9 @@
-using AuthForge.Models;
-using AuthForge.Services;
-using AuthForge.ViewModels;
+using TheVinylCountdown.Models;
+using TheVinylCountdown.Services;
+using TheVinylCountdown.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AuthForge.Controllers;
+namespace TheVinylCountdown.Controllers;
 
 [Route("account")]
 public class AccountController : Controller

@@ -5,10 +5,10 @@
 class DLLNode {
   /**
    * Creates a DLLNode.
-   * @param {*} val - The value to store in the node.
+   * @param {any} val - The value to store in the node.
    */
   constructor(val) {
-    /** @type {*} */
+    /** @type {any} */
     this.value = val;
     /** @type {DLLNode|null} */
     this.prev = null;
@@ -54,7 +54,7 @@ class DoublyLinkedList {
 
   /**
    * Inserts a new node with the given value at the head of the list.
-   * @param {*} val - The value to insert.
+   * @param {any} val - The value to insert.
    * @returns {void}
    * @complexity O(1)
    */
@@ -71,26 +71,8 @@ class DoublyLinkedList {
   }
 
   /**
-   * Inserts a new node with the given value at the tail of the list.
-   * @param {*} val - The value to insert.
-   * @returns {void}
-   * @complexity O(1)
-   */
-  insertAtTail(val) {
-    const newNode = new DLLNode(val);
-    if (this.isEmpty()) {
-      this.head = this.tail = newNode;
-    } else {
-      newNode.prev = this.tail;
-      this.tail.next = newNode;
-      this.tail = newNode;
-    }
-    this.length++;
-  }
-
-  /**
    * Removes and returns the value at the head of the list.
-   * @returns {*} The value removed, or null if the list is empty.
+   * @returns {any} The value removed, or null if the list is empty.
    * @complexity O(1)
    */
   removeHead() {
@@ -107,37 +89,68 @@ class DoublyLinkedList {
   }
 
   /**
+   * Inserts a new node with the given value at the tail of the list.
+   * @param {any} val - The value to insert.
+   * @returns {void}
+   * @complexity O(1)
+   */
+  insertAtTail(val) {
+    let newNode = new DLLNode(val);
+
+    if (this.isEmpty()) {
+      this.head = newNode;
+      this.tail = newNode;
+    }
+    else{
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+
+    this.length++;
+  }
+
+  /**
    * Removes and returns the value at the tail of the list.
-   * @returns {*} The value removed, or null if the list is empty.
+   * @returns {any} The value removed, or null if the list is empty.
    * @complexity O(1)
    */
   removeTail() {
-    if (this.isEmpty()) return null;
-    const removedValue = this.tail.value;
-    if (this.head === this.tail) {
-      this.head = this.tail = null;
-    } else {
+    if (!this.tail) return null;
+    
+    let removedValue = this.tail.value;
+
+    if(this.length == 1){
+      this.head = null;
+      this.tail = null;
+    }
+    else{
       this.tail = this.tail.prev;
       this.tail.next = null;
     }
+    
     this.length--;
+
     return removedValue;
   }
 
   /**
    * Finds the first node with the specified value.
-   * @param {*} val - The value to search for.
+   * @param {any} val - The value to search for.
    * @returns {DLLNode|null} The found node, or null if not found.
    * @complexity O(n)
    */
   find(val) {
-    let current = this.head;
-    while (current) {
-      if (current.value === val) {
-        return current;
+    let runner = this.head;
+
+    while (runner) {
+      if (runner.value == val) {
+        return runner;
       }
-      current = current.next;
+      
+      runner = runner.next;
     }
+
     return null;
   }
 

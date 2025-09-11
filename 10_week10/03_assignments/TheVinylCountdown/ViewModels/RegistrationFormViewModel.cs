@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AuthForge.ViewModels;
+namespace TheVinylCountdown.ViewModels;
 
 public class RegistrationFormViewModel
 {
