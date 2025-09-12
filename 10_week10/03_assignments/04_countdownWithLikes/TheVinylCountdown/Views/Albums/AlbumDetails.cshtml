@@ -1,0 +1,36 @@
+@model AlbumViewModel
+
+@{
+    var album = Model;
+    ViewData["Title"] = album.Title + "details";
+
+}
+
+<h1>Album details</h1>
+
+<div class="card shadow mb-3">
+    <div class="card-body">
+        <p class="lead card-text">Title: @album.Title</p>
+        <p class="lead card-text">Artist: @album.Artist</p>
+        <p class="card-text"><small class="text-muted">Posted by: @album.Username
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-end align-items-center gap-2">
+            <span>@album.LikeCount likes</span>
+            @if(!album.LikedByMe){
+                <form asp-action="Like" asp-controller="Albums" method="post" asp-route-albumId="@album.Id">
+                    <button type="submit" class="btn btn-sm">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                    </button>
+                </form>
+            }
+            else{
+                <form asp-action="Unlike" asp-controller="Albums" method="post" asp-route-albumId="@album.Id">
+                    <button type="submit" class="btn btn-sm">
+                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                    </button>
+                </form>
+            }
+        </div>
+    </div>
+</div>

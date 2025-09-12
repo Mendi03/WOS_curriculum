@@ -1,0 +1,61 @@
+@model AlbumsIndexViewModel
+
+@{
+    ViewData["Title"] = "Albums";
+    var albums = Model.Albums;
+}
+
+@if(albums.Count < 1){
+    <h1>No albums added yet</h1>
+}
+else{
+    <h1>All Albums</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Uploaded By</th>
+                        <th>Likes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var album in albums)
+                    {
+                        <tr>
+                            <td>
+                                <a href="albums/@album.Id">@album.Title</a>
+                            </td>
+                            <td>@album.Artist</td>
+                            <td>@(album.UserId == Context.Session.GetInt32("userId") ? "You" : album.Username)</td>
+                            <td>@album.LikeCount</td>
+                            <td>
+                            @if(!album.LikedByMe){
+                                <form asp-action="Like" asp-controller="Albums" method="post" asp-route-albumId="@album.Id">
+                                    <button type="submit" class="btn btn-sm">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                    </button>
+                                </form>
+                            }
+                            else{
+                                <form asp-action="Unlike" asp-controller="Albums" method="post" asp-route-albumId="@album.Id">
+                                    <button type="submit" class="btn btn-sm">
+                                        <i class="bi bi-hand-thumbs-up-fill"></i>
+                                    </button>
+                                </form>
+                            }
+                        
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>  
+}
+    
+
+
