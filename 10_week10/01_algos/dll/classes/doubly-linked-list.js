@@ -140,6 +140,163 @@ class DoublyLinkedList {
     }
     return null;
   }
+  /**
+   * Inserts a new node with the given value before the specified node.
+   * @param {DLLNode} node - The node before which to insert.
+   * @param {any} val - The value to insert.
+   * @returns {void}
+   * @complexity O(1)
+   */
+  insertBefore(node, val) {
+    if (!node) return;
+    const newNode = new DLLNode(val);
+
+    if (node === this.head) {
+      newNode.next = node;
+      node.prev = newNode;
+      this.head = newNode;
+      this.length++;
+      return;
+    }
+
+    const prev = node.prev;
+    if (prev) prev.next = newNode;
+    newNode.prev = prev;
+    newNode.next = node;
+    node.prev = newNode;
+    this.length++;
+  }
+
+  /**
+   * Inserts a new node with the given value after the specified node.
+   * @param {DLLNode} node - The node after which to insert.
+   * @param {any} val - The value to insert.
+   * @returns {void}
+   * @complexity O(1)
+   */
+  insertAfter(node, val) {
+    if (!node) return;
+    const newNode = new DLLNode(val);
+
+    if (node === this.tail) {
+      node.next = newNode;
+      newNode.prev = node;
+      this.tail = newNode;
+      this.length++;
+      return;
+    }
+
+    const next = node.next;
+    newNode.next = next;
+    newNode.prev = node;
+    node.next = newNode;
+    if (next) next.prev = newNode;
+    this.length++;
+  }
+
+  /**
+   * Removes the first node with the specified value from the list.
+   * @param {any} val - The value to remove.
+   * @returns {boolean} True if a node was removed; otherwise, false.
+   * @complexity O(n)
+   */
+  remove(val) {
+    // TODO:
+    // 1. Find the node containing the given value.
+    let runner = this.head;
+
+    while (runner) {
+      if (runner.value == val) {
+        break;
+      }
+      runner = runner.next;
+    }
+    // 2. If not found, return false.
+    if(!runner) return false;
+    // 3. If the node is the only node (head and tail), clear head and tail.
+    // 4. If the node is the head, update head and fix links.
+    if(this.head == runner){
+      if(runner == this.tail){
+        this.tail = this.head = null;
+      }
+      else{
+        this.head = runner.next;
+        this.head.prev = null;
+      }
+    }
+    // 5. If the node is the tail, update tail and fix links.
+    else if (this.tail == runner) {
+      this.tail = runner.prev;
+      this.tail.next = null;
+    }
+    // 6. Otherwise, unlink the node from its previous and next nodes.
+    else{
+      runner.prev.next = runner.next;
+      runner.next.prev = runner.prev;
+      runner = null;
+    }
+    // 7. Decrement length and return true.
+    this.length--;
+    return true;
+    
+  }
+
+  /**
+   * Reverses the order of the nodes in the list in-place.
+   * @returns {void}
+   * @complexity O(n)
+   */
+  reverse2() {
+    // TODO:
+    // 1. If the list is empty or has one node, do nothing.
+    if(!this.length) return;
+    // 2. Iterate through each node, swapping its prev and next pointers.
+    let start = this.head
+    let end = this.tail
+
+    let temp;
+
+    while (start != end) {
+      temp = start.value;
+      start.value = end.value;
+      end.value = temp;
+
+      if(start.next == end) return;
+
+      start = start.next;
+      end = end.prev;
+    }
+    // 3. After iteration, swap the head and tail references.
+    return;
+
+  }
+
+  /**
+   * Reverses the order of the nodes in the list in-place.
+   * @returns {void}
+   * @complexity O(n)
+   */
+  reverse() {
+    // TODO:
+    // 1. If the list is empty or has one node, do nothing.
+    if(!this.length || this.length == 1) return;
+    // 2. Iterate through each node, swapping its prev and next pointers.
+    let runner = this.head;
+    let next;
+    // let nextPointer;
+
+    while (runner) {
+      next = runner.next;
+      // nextPointer = runner.next;
+      runner.next = runner.prev;
+      runner.prev = next;
+      runner = next;
+    }
+    // 3. After iteration, swap the head and tail references.
+    next = this.head;
+    this.head = this.tail;
+    this.tail = next;
+  }
 
   /**
    * Converts the list to an array of values.
@@ -155,6 +312,7 @@ class DoublyLinkedList {
     }
     return arr;
   }
+
 }
 
 export { DoublyLinkedList };

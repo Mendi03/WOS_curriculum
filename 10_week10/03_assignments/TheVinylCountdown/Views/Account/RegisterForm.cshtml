@@ -10,6 +10,11 @@
     <div class="card-body">
         <form asp-action="ProcessRegister" asp-controller="Account" method="post">
             <div class="mb-3">
+                <label asp-for="Username" class="form-label">Username:</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email:</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="form-text text-danger"></span>

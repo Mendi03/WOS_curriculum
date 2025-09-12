@@ -1,0 +1,39 @@
+@model AlbumsIndexViewModel
+
+@{
+    ViewData["Title"] = "Albums";
+    var albums = Model.Albums;
+}
+
+@if(albums.Count < 1){
+    <h1>No albums added yet</h1>
+}
+else{
+    <h1>All Albums</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Uploaded By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var album in albums)
+                    {
+                        <tr>
+                            <td>@album.Title</td>
+                            <td>@album.Artist</td>
+                            <td>@(album.UserId == Context.Session.GetInt32("userId") ? "You" : album.Username)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>  
+}
+    
+
+

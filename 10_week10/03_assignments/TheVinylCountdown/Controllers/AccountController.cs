@@ -30,6 +30,7 @@ public class AccountController : Controller
     {
         //normalize data
         vm.Email = (vm.Email ?? "").Trim().ToLowerInvariant();
+        vm.Username = (vm.Username ?? "").Trim();
         vm.Password = (vm.Password ?? "").Trim();
         vm.ConfirmPassword = (vm.ConfirmPassword ?? "").Trim();
 
@@ -53,6 +54,7 @@ public class AccountController : Controller
         // create the new user
         var newUser = new User
         {
+            Username = vm.Username,
             Email = vm.Email,
             PasswordHash = hashedPassword
         };
@@ -65,7 +67,7 @@ public class AccountController : Controller
         HttpContext.Session.SetInt32(SessionUserId, newUser.Id);
 
         //redirect
-        return RedirectToAction(nameof(ProtectedPage));
+        return RedirectToAction("AllAlbums", "Albums");
     }
 
     [HttpGet("protected")]
@@ -129,7 +131,7 @@ public class AccountController : Controller
 
         // Log the user in
         HttpContext.Session.SetInt32(SessionUserId, maybeUser.Id);
-        return RedirectToAction(nameof(ProtectedPage));
+        return RedirectToAction("AllAlbums", "Albums");
     }
 
     [HttpGet("logout")]
