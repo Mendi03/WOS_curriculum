@@ -67,7 +67,7 @@ public class AccountController : Controller
         HttpContext.Session.SetInt32(SessionUserId, newUser.Id);
 
         //redirect
-        return RedirectToAction("AllAlbums", "Albums");
+        return RedirectToAction(nameof(ProtectedPage));
     }
 
     [HttpGet("protected")]
@@ -131,7 +131,7 @@ public class AccountController : Controller
 
         // Log the user in
         HttpContext.Session.SetInt32(SessionUserId, maybeUser.Id);
-        return RedirectToAction("AllAlbums", "Albums");
+        return RedirectToAction(nameof(ProtectedPage));
     }
 
     [HttpGet("logout")]
