@@ -17,10 +17,10 @@
                 </li> *@
                 @if(Context.Session.GetInt32("userId") is not null){
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Albums" asp-action="AllAlbums">Albums</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="AllMovies">Movies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Albums" asp-action="AddAlbum">Add Album</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="AddMovie">Add Movie</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ConfirmLogout">Logout</a>

@@ -131,7 +131,7 @@ public class AccountController : Controller
 
         // Log the user in
         HttpContext.Session.SetInt32(SessionUserId, maybeUser.Id);
-        return RedirectToAction(nameof(ProtectedPage));
+        return RedirectToAction("AllMovies", "Movie");
     }
 
     [HttpGet("logout")]

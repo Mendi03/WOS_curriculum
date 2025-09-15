@@ -1,0 +1,47 @@
+@model MovieIndexViewModel
+
+@{
+    ViewData["Title"] = "Movies";
+    var movies = Model.Movies;
+    var sessionId = Context.Session.GetInt32("userId");
+}
+
+@if(movies.Count < 1){
+    <h1>No movies added yet</h1>
+}
+else{
+    <h1>All Albums</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Avg Rating</th>
+                        <th>Uploaded By</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var movie in movies)
+                    {
+                        <tr>
+                            <td>@movie.Title</td>
+                            <td>@movie.Genre</td>
+                            <td>@movie.Genre</td>
+                            <td>
+                            @if(movie.UserId == sessionId){
+                                <a href="movies/@movie.Id">view</a>
+                                <a href="movies/@movie.Id">view</a>
+                            }
+                            else{
+                                <a href="movies/@movie.Id">view</a>
+                            }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>  
+}

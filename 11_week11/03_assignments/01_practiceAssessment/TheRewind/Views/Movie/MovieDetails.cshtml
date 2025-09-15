@@ -1,0 +1,59 @@
+@model MovieViewModel
+
+@{
+    ViewData["Title"] = "Movie Details";
+    var movie = Model;
+}
+
+<section class="d-flex gap-3">
+    <div class="" style="flex: 2">
+        <div class="card shadow p-3">
+            <h1>Movie Details</h1>
+            <div class="mb-3">
+                <p><strong>Title: </strong>@movie.Title</p>
+                <p><strong>Genre: </strong>@movie.Genre</p>
+                <p><strong>ReleaseDate: </strong>@movie.ReleaseDate</p>
+                <p><strong>Uploaded by: </strong>@movie.Title</p>
+            </div>
+            <div>
+                <p><strong>Description: </strong>@movie.Description</p>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex gap-3 flex-column" style="flex: 1">
+        <div class="card shadow p-3" style="flex: 1">
+            <h2>Stats</h2>
+            <ul>
+                <li>Ratings: 1234</li>
+                <li>Average rating: 6</li>
+                <li>
+                    Rated By:
+                    <ul>
+                        <li>Person 1</li>
+                        <li>Person 2</li>
+                        <li>Person 3</li>
+                        <li>Person 4</li>
+                        <li>Person 5</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="card shadow p-3" style="flex: 1">
+            <h2>Rate:</h2>
+            <form asp-action="AddRating" asp-controller="Rating" method="post" asp-route-albumId="@movie.Id" class="mb-3">
+                <div class="mb-3">
+                    <select name="rating" id="rating">
+                        <option disabled selected> -- select an option -- </option>
+                        @for(int i = 1; i <= 5; i++){
+                            <option value="@i" >@i</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Title" class="form-text text-danger"></span>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Rate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

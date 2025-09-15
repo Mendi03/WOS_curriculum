@@ -9,7 +9,8 @@ public class User
     public string Username { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PasswordHash { get; set; } = string.Empty;
-    // public List<Album> Albums { get; set; } = [];
+    public List<Movie> Movies { get; set; } = [];
+    public List<Rating> Ratigns { get; set; } = [];
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }
