@@ -72,6 +72,39 @@ class HashTable {
     }
     if (!found) currBucket.push([key, value]);
   }
+
+  /**
+   * Retrieves the value for the given key, or undefined if not found.
+   * @param {string} key
+   * @returns {any|undefined}
+   */
+  get(key) {
+    // TODO: hash → scan bucket → return matching value or undefined
+    let index = this.#hash(key);
+
+    let bucket = this.buckets[index];
+
+    for (const k of bucket) {
+      if (k[0] == key) {
+        return k[1];
+      }
+    }
+     
+    return undefined;
+
+  }
+
+  /**
+   * Checks whether the given key exists in the table.
+   * @param {string} key
+   * @returns {boolean}
+   */
+  has(key) {
+    // TODO: return true if get(key) !== undefined
+
+    return this.get(key) != undefined ?  true :  false;
+  }
 }
+
 
 export { HashTable };

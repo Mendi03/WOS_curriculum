@@ -14,18 +14,42 @@ function charFrequency(str,{ ignoreWhitespace = true, caseInsensitive = true } =
   // Initialize a HashTable.
   let hashTable = new HashTable();
 
+  // let keys = [];
+
+
   // Loop through each character of the string.
-  for (const char of str) {
-    hashTable.set(char, 5);
+  for (let char of str) {
+    if (char == " "|| char == "\t" && ignoreWhitespace) {
+      continue;
+    }
+    if (caseInsensitive){
+      char = char.toLowerCase();
+    }
+    let temp = hashTable.get(char);
+    if (temp == undefined) {
+      hashTable.set(char, 1)
+      // if(keys.includes())
+      continue
+    }
+    else{
+      hashTable.set(char, temp + 1)
+    }
+
+    // hashTable.set(char);
   }
 
-  console.log(hashTable.get(" "));
+  // console.log(Object.fromEntries(hashTable.buckets.flat()));
+  
+
+  return Object.fromEntries(hashTable.buckets.flat());
+
+  // console.log(hashTable);
   
   // Apply options: lowercase if caseInsensitive, skip whitespace if ignoreWhitespace.
-
-
   // If table.has(ch), increment the stored value, else set to 1.
+
   // At the end, collect key–value pairs from table into a plain object and return it.
+
 }
 
-charFrequency("A b c");
+export { charFrequency, charFrequencyRaw };

@@ -1,10 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { HashTable } from '../hash-table.js';
-
-// NOTE: These tests target only Day 1 scope:
-// - constructor(size)
-// - #hash(key) (indirectly via set)
-// - set(key, value)
+import { charFrequency } from '../algorithms.js';
 
 describe('HashTable — Day 1 (constructor, #hash, set)', () => {
   describe('constructor', () => {
@@ -78,6 +74,72 @@ describe('HashTable — Day 1 (constructor, #hash, set)', () => {
           expect(typeof entry[0]).toBe('string');
         }
       }
+    });
+  });
+});
+
+describe('HashTable - Day 2 (get, has, charFrequency', () => {
+  describe('get', () => {
+    it('returns undefined for missing keys', () => {
+      const ht = new HashTable();
+      expect(ht.get('nope')).toBeUndefined();
+    });
+
+    it('retrieves values for existing keys', () => {
+      const ht = new HashTable(4);
+      ht.set('a', 1);
+      ht.set('b', 2);
+      expect(ht.get('a')).toBe(1);
+      expect(ht.get('b')).toBe(2);
+    });
+
+    it('works correctly under collisions (same bucket)', () => {
+      const ht = new HashTable(1); // everything into bucket 0
+      ht.set('x', 10);
+      ht.set('y', 20);
+      ht.set('z', 30);
+      expect(ht.get('x')).toBe(10);
+      expect(ht.get('y')).toBe(20);
+      expect(ht.get('z')).toBe(30);
+    });
+
+    it('reflects updates made by set on an existing key', () => {
+      const ht = new HashTable(2);
+      ht.set('k', 1);
+      expect(ht.get('k')).toBe(1);
+      ht.set('k', 99);
+      expect(ht.get('k')).toBe(99);
+    });
+  });
+
+  describe('has', () => {
+    it('returns false for keys that do not exist and true once set', () => {
+      const ht = new HashTable(4);
+      expect(ht.has('missing')).toBe(false);
+      ht.set('missing', 42);
+      expect(ht.has('missing')).toBe(true);
+    });
+
+    it('handles collisions without false positives', () => {
+      const ht = new HashTable(1);
+      ht.set('a', 1);
+      ht.set('b', 2);
+      expect(ht.has('a')).toBe(true);
+      expect(ht.has('b')).toBe(true);
+      expect(ht.has('c')).toBe(false);
+    });
+  });
+
+  describe('charFrequency (Day 2 algo using HashTable)', () => {
+    it('counts letters case-insensitively and ignores whitespace by default', () => {
+      const res = charFrequency('A a  Bb\tB  c');
+      expect(res).toEqual({ a: 2, b: 3, c: 1 });
+    });
+
+    it('handles punctuation and numbers', () => {
+      const res = charFrequency('ab!! 123');
+      // default options: lowercased, whitespace ignored
+      expect(res).toEqual({ a: 1, b: 1, '!': 2, 1: 1, 2: 1, 3: 1 });
     });
   });
 });
