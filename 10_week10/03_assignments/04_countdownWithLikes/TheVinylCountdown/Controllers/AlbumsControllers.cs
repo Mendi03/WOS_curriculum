@@ -121,6 +121,7 @@ public class AlbumsController : Controller
 
         return RedirectToAction(nameof(AllAlbums));
     }
+
     [HttpPost("{albumId}/Unlike")]
     [ValidateAntiForgeryToken]
     public IActionResult Unlike(int albumId)

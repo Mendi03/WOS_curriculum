@@ -1,0 +1,24 @@
+@model MovieViewModel
+
+@{
+    ViewData["Title"] = "Delete Movie";
+
+    var movie = Model;
+}
+
+<h1>Delete Movie</h1>
+
+<div class="card shadow">
+    <div class="card-body">
+        <form asp-action="RemoveMovie" asp-controller="Movie" method="post" asp-route-movieId="@movie.Id">
+            <p>Are you sure you want to delete @movie.Title from the database?</p>
+            <small>(This action cannot be reversed)</small>
+            <div class="text-start">
+                <a href="/movies" class="btn btn-primary">Go back</a>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>

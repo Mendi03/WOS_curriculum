@@ -1,0 +1,22 @@
+@model ProfileViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+
+    var user = Model;
+}
+
+<h1 class="display-4">Profile</h1>
+
+<div class="card shadow">
+    <div class="card body p-3">
+        <div class="mb-3">
+            <p><strong>Username: </strong>@user.Username</p>
+            <p><strong>E-mail: </strong>@user.Email</p>
+        </div>
+        <div>
+            <p><strong>Movies Added: </strong>@user.MoviesAdded</p>
+            <p><strong>Movies Rated: </strong>@user.MoviesRated</p>
+        </div>
+    </div>
+</div>

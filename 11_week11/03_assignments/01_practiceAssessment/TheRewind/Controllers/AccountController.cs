@@ -2,6 +2,7 @@ using TheRewind.Models;
 using TheRewind.Services;
 using TheRewind.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace TheRewind.Controllers;
 
@@ -67,22 +68,7 @@ public class AccountController : Controller
         HttpContext.Session.SetInt32(SessionUserId, newUser.Id);
 
         //redirect
-        return RedirectToAction(nameof(ProtectedPage));
-    }
-
-    [HttpGet("protected")]
-    public IActionResult ProtectedPage()
-    {
-        var userid = HttpContext.Session.GetInt32(SessionUserId);
-        if (userid is not int uid)
-        {
-            return Unauthorized();
-        }
-
-        var user = _context.Users.Where((u) => u.Id == uid).FirstOrDefault();
-        var email = user!.Email;
-
-        return View("ProtectedPage", email);
+        return RedirectToAction("AllMovies", "Movie");
     }
 
     [HttpGet("login")]
@@ -105,14 +91,6 @@ public class AccountController : Controller
             return View(nameof(LoginForm), vm);
         }
 
-        // check if user exists
-        // if (!_context.Users.Any((u) => u.Email == vm.Email))
-        // {
-        //     // manually add an error to model state
-        //     ModelState.AddModelError("", "Invalid user credentials.");
-        //     return View(nameof(LoginForm), vm);
-        // }
-
         // email exists, find user
         var maybeUser = _context.Users.FirstOrDefault((u) => u.Email == vm.Email);
 
@@ -121,13 +99,6 @@ public class AccountController : Controller
             ModelState.AddModelError("", "Invalid user credentials.");
             return View(nameof(LoginForm), vm);
         }
-
-        // verify password
-        // if (!_passwords.Verify(vm.Password, maybeUser.PasswordHash))
-        // {
-        //     ModelState.AddModelError("", "Invalid user credentials.");
-        //     return View(nameof(LoginForm), vm);
-        // }
 
         // Log the user in
         HttpContext.Session.SetInt32(SessionUserId, maybeUser.Id);
@@ -154,5 +125,26 @@ public class AccountController : Controller
         HttpContext.Session.Clear();
 
         return RedirectToAction(nameof(LoginForm), new { message = "logout-successful" });
+    }
+
+    [HttpGet("profile")]
+    public IActionResult UserProfile()
+    {
+        var userId = HttpContext.Session.GetInt32(SessionUserId);
+
+        if (userId is not int uid)
+        {
+            return Unauthorized();
+        }
+
+        var vm = _context.Users.AsNoTracking().Where(u => u.Id == uid).Select(u => new ProfileViewModel
+        {
+            Username = u.Username,
+            Email = u.Email,
+            MoviesAdded = u.Movies.Where(m => m.UserId == uid).ToList().Count,
+            MoviesRated = u.Ratings.Where(r => r.UserId == uid).ToList().Count,
+        }).FirstOrDefault();
+
+        return View(vm);
     }
 }

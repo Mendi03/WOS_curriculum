@@ -10,7 +10,7 @@
     <h1>No movies added yet</h1>
 }
 else{
-    <h1>All Albums</h1>
+    <h1>All Movies</h1>
     <div class="card shadow">
         <div class="card-body">
             <table class="table">
@@ -27,12 +27,13 @@ else{
                     {
                         <tr>
                             <td>@movie.Title</td>
-                            <td>@movie.Genre</td>
-                            <td>@movie.Genre</td>
+                            <td>@(movie.AvgRating != null ? movie.AvgRating : "None")</td>
+                            <td>@movie.Username</td>
                             <td>
                             @if(movie.UserId == sessionId){
                                 <a href="movies/@movie.Id">view</a>
-                                <a href="movies/@movie.Id">view</a>
+                                <a href="movies/@movie.Id/edit">edit</a>
+                                <a href="movies/@movie.Id/delete">delete</a>
                             }
                             else{
                                 <a href="movies/@movie.Id">view</a>

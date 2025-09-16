@@ -10,7 +10,7 @@ public class User
     public string Email { get; set; } = string.Empty;
     public string PasswordHash { get; set; } = string.Empty;
     public List<Movie> Movies { get; set; } = [];
-    public List<Rating> Ratigns { get; set; } = [];
+    public List<Rating> Ratings { get; set; } = [];
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }

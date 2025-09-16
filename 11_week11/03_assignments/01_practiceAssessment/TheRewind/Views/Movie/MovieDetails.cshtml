@@ -13,7 +13,7 @@
                 <p><strong>Title: </strong>@movie.Title</p>
                 <p><strong>Genre: </strong>@movie.Genre</p>
                 <p><strong>ReleaseDate: </strong>@movie.ReleaseDate</p>
-                <p><strong>Uploaded by: </strong>@movie.Title</p>
+                <p><strong>Uploaded by: </strong>@movie.Username</p>
             </div>
             <div>
                 <p><strong>Description: </strong>@movie.Description</p>
@@ -24,28 +24,26 @@
         <div class="card shadow p-3" style="flex: 1">
             <h2>Stats</h2>
             <ul>
-                <li>Ratings: 1234</li>
-                <li>Average rating: 6</li>
+                <li>Ratings: @movie.TotalRatings</li>
+                <li>Average rating: @movie.AvgRating</li>
                 <li>
                     Rated By:
                     <ul>
-                        <li>Person 1</li>
-                        <li>Person 2</li>
-                        <li>Person 3</li>
-                        <li>Person 4</li>
-                        <li>Person 5</li>
+                        @foreach(var username in movie.UsersThatHaveRated){
+                            <li>@username</li>
+                        }    
                     </ul>
                 </li>
             </ul>
         </div>
         <div class="card shadow p-3" style="flex: 1">
             <h2>Rate:</h2>
-            <form asp-action="AddRating" asp-controller="Rating" method="post" asp-route-albumId="@movie.Id" class="mb-3">
+            <form asp-action="AddRating" asp-controller="Movie" method="post" asp-route-movieId="@movie.Id" class="mb-3">
                 <div class="mb-3">
                     <select name="rating" id="rating">
-                        <option disabled selected> -- select an option -- </option>
+                        <option disabled selected="@(movie.UserRating == null)" value="0"> -- select an option -- </option>
                         @for(int i = 1; i <= 5; i++){
-                            <option value="@i" >@i</option>
+                            <option value="@i" selected="@(movie.UserRating == i)">@i</option>
                         }
                     </select>
                     <span asp-validation-for="Title" class="form-text text-danger"></span>
