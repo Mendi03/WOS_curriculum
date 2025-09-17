@@ -18,7 +18,7 @@ public class MovieController : Controller
     }
 
     [HttpGet("")]
-    public IActionResult AllMovies()
+    public async Task<IActionResult> AllMovies()
     {
         var userId = HttpContext.Session.GetInt32(SessionUserId);
 
@@ -27,7 +27,10 @@ public class MovieController : Controller
             return Unauthorized();
         }
 
-        var movies = _context.Movies.AsNoTracking().Select(m => new MovieViewModel
+        var movies = await _context
+        .Movies
+        .AsNoTracking()
+        .Select(m => new MovieViewModel
         {
             Id = m.Id,
             Title = m.Title,
@@ -37,7 +40,7 @@ public class MovieController : Controller
             UserId = m.UserId,
             Username = m.User!.Username,
             AvgRating = m.Ratings.Average(m => m.userRating).ToString("F1"),
-        }).ToList();
+        }).ToListAsync();
 
         var vm = new MovieIndexViewModel
         {
@@ -62,10 +65,12 @@ public class MovieController : Controller
         return View(vm);
     }
 
+    [ValidateAntiForgeryToken]
     [HttpPost("new")]
-    public IActionResult AddMovie(MovieFormViewModel vm)
+    public async Task<IActionResult> AddMovie(MovieFormViewModel vm)
     {
         var userid = HttpContext.Session.GetInt32(SessionUserId);
+
         if (userid is not int uid)
         {
             return Unauthorized();
@@ -75,7 +80,6 @@ public class MovieController : Controller
             return View(nameof(MovieForm), vm);
         }
 
-        // int userId = (int)HttpContext.Session.GetInt32(SessionUserId);
         // create new Movie
         var newMovie = new Movie
         {
@@ -86,14 +90,14 @@ public class MovieController : Controller
             UserId = uid
         };
 
-        _context.Movies.Add(newMovie);
-        _context.SaveChanges();
+        await _context.Movies.AddAsync(newMovie);
+        await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(AllMovies));
     }
 
     [HttpGet("{movieId}/edit")]
-    public IActionResult EditMovie(int movieId)
+    public async Task<IActionResult> EditMovie(int movieId)
     {
         var userid = HttpContext.Session.GetInt32(SessionUserId);
 
@@ -102,7 +106,7 @@ public class MovieController : Controller
             return Unauthorized();
         }
 
-        var vm = _context.Movies.Where(m => m.Id == movieId).Select(m => new EditMovieViewModel
+        var vm = await _context.Movies.AsNoTracking().Where(m => m.Id == movieId).Select(m => new EditMovieViewModel
         {
             Id = m.Id,
             Title = m.Title,
@@ -110,18 +114,20 @@ public class MovieController : Controller
             Description = m.Description,
             ReleaseDate = m.ReleaseDate,
             UserId = m.UserId
-        }).FirstOrDefault();
+        }).FirstOrDefaultAsync();
 
         if (uid != vm!.UserId)
         {
-            return Forbid();
+            // return Forbid(); // forbid keeps returning a 500 error
+            return StatusCode(403);
         }
 
         return View(vm);
     }
 
+    [ValidateAntiForgeryToken]
     [HttpPost("{movieId}/edit")]
-    public IActionResult UpdateMovie(int movieId, EditMovieViewModel viewModel)
+    public async Task<IActionResult> UpdateMovie(int movieId, EditMovieViewModel viewModel)
     {
         var userid = HttpContext.Session.GetInt32(SessionUserId);
 
@@ -129,38 +135,32 @@ public class MovieController : Controller
         {
             return Unauthorized();
         }
-
-        // if (uid != viewModel.UserId)
-        // {
-        //     return Unauthorized();
-        // }
 
         if (!ModelState.IsValid)
         {
             return View(nameof(EditMovie), viewModel);
         }
 
-        var movie = _context.Movies.Find(movieId);
+        var movie = await _context.Movies.FindAsync(movieId);
+
         if (movie == null)
         {
             return NotFound();
         }
 
-        // game.Id = (int)viewModel.Id;
-        // Console.WriteLine($"{game.Id} --------------------------------");
         movie.Title = viewModel.Title;
         movie.Genre = viewModel.Genre;
         movie.Description = viewModel.Description;
         movie.ReleaseDate = viewModel.ReleaseDate;
         movie.UpdatedAt = DateTime.Now;
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(MovieDetails), new { movieId = movie.Id });
     }
 
     [HttpGet("{movieId}/delete")]
-    public IActionResult DeleteMovie(int movieId)
+    public async Task<IActionResult> DeleteMovie(int movieId)
     {
         var userid = HttpContext.Session.GetInt32(SessionUserId);
 
@@ -169,23 +169,25 @@ public class MovieController : Controller
             return Unauthorized();
         }
 
-        var vm = _context.Movies.Where(m => m.Id == movieId).Select(m => new MovieViewModel
+        var vm = await _context.Movies.AsNoTracking().Where(m => m.Id == movieId).Select(m => new MovieViewModel
         {
             Id = m.Id,
             Title = m.Title,
             UserId = m.UserId
-        }).FirstOrDefault();
+        }).FirstOrDefaultAsync();
 
         if (uid != vm!.UserId)
         {
-            return Forbid();
+            // return Forbid(); // forbid keeps returning a 500 error
+            return StatusCode(403);
         }
 
         return View(vm);
     }
 
+    [ValidateAntiForgeryToken]
     [HttpPost("{movieId}/delete")]
-    public IActionResult RemoveMovie(int movieId)
+    public async Task<IActionResult> RemoveMovie(int movieId)
     {
         var userid = HttpContext.Session.GetInt32(SessionUserId);
 
@@ -194,53 +196,41 @@ public class MovieController : Controller
             return Unauthorized();
         }
 
-        // if (uid != viewModel.UserId)
-        // {
-        //     return Unauthorized();
-        // }
+        var movie = await _context.Movies.FindAsync(movieId);
 
-        var movie = _context.Movies.Find(movieId);
         if (movie == null)
         {
             return NotFound();
         }
 
-        // game.Id = (int)viewModel.Id;
-        // Console.WriteLine($"{game.Id} --------------------------------");
         _context.Remove(movie);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(AllMovies));
     }
 
     // --------------------Ratings--------------------------------
 
+    [ValidateAntiForgeryToken]
     [HttpPost("{movieId}/rate")]
-    public IActionResult AddRating(int movieId, int rating)
+    public async Task<IActionResult> AddRating(int movieId, int rating)
     {
-        // Console.WriteLine($"--------------------------- {albumId}");
         var userid = HttpContext.Session.GetInt32(SessionUserId);
 
-        // Console.WriteLine($"--------------------------- {albumId}");
-
-        // checks if "HttpContext.Session.GetInt32(SessionUserId)" is null and also casts if it exists onto the variable uid as an int
         if (userid is not int uid)
         {
             return Unauthorized();
         }
-
-        // Console.WriteLine($"{rating} -------------------------");
-
 
         if (!(rating >= 1 && rating <= 5))
         {
             return RedirectToAction(nameof(MovieDetails), new { movieId = movieId });
         }
 
-        var maybeRated = _context
+        var maybeRated = await _context
         .Ratings
         .Where(rating => rating.UserId == uid && rating.MovieId == movieId)
-        .FirstOrDefault();
+        .FirstOrDefaultAsync();
 
         if (maybeRated is null)
         {
@@ -251,17 +241,18 @@ public class MovieController : Controller
                 MovieId = movieId,
                 userRating = rating,
             };
-            _context.Add(newRating);
-            _context.SaveChanges();
+
+            await _context.AddAsync(newRating);
+            await _context.SaveChangesAsync();
         }
         else
         {
             // Console.WriteLine($"{maybeRated.Id} -------------------------");
-            var existingRating = _context.Ratings.Find(maybeRated.Id);
+            var existingRating = await _context.Ratings.FindAsync(maybeRated.Id);
 
             existingRating!.userRating = rating;
             existingRating.UpdatedAt = DateTime.UtcNow;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
         }
 
@@ -269,15 +260,16 @@ public class MovieController : Controller
     }
 
     [HttpGet("{movieId}")]
-    public IActionResult MovieDetails(int movieId)
+    public async Task<IActionResult> MovieDetails(int movieId)
     {
         var userid = HttpContext.Session.GetInt32(SessionUserId);
+
         if (userid is not int uid)
         {
             return Unauthorized();
         }
 
-        var vm = _context.Movies.AsNoTracking().Where(m => m.Id == movieId).Select(m => new MovieViewModel
+        var vm = await _context.Movies.AsNoTracking().Where(m => m.Id == movieId).Select(m => new MovieViewModel
         {
             Id = m.Id,
             Title = m.Title,
@@ -287,13 +279,15 @@ public class MovieController : Controller
             UserId = m.UserId,
             Username = m.User!.Username,
             TotalRatings = m.Ratings.Where(r => r.MovieId == movieId).ToList().Count,
+            // Left this dereference warning because I need the value to be null whenever the user 
+            // has not rated the movie. The check for null is done in the MovieDetails View.
             UserRating = m.Ratings
                         .FirstOrDefault(r => r.MovieId == movieId && r.UserId == uid)
                         .userRating,
             AvgRating = m.Ratings.Average(m => m.userRating).ToString("F1"),
             UsersThatHaveRated = m.Ratings.OrderByDescending(r => r.CreatedAt).Select(r => r.User!.Username).Take(5).ToList(),
 
-        }).FirstOrDefault();
+        }).FirstOrDefaultAsync();
 
         // Console.WriteLine($"{vm.UserRating} -------------------------------");
 

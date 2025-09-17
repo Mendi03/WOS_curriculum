@@ -3,8 +3,7 @@ using TheRewind.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var dbPassword = builder.Configuration["DbPassword"];
-var connectionString = $"server=localhost;user=root;password={dbPassword};database=the_rewind_mvc_db;";
+var connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -6,6 +6,7 @@ public class ErrorController : Controller
     [HttpGet("{code}")]
     public IActionResult Handle(int code)
     {
+        // Console.WriteLine($"{code} ---------------------------------------------");
         if (code == 404)
         {
             // Serve a custom view for 404 errors
@@ -15,6 +16,11 @@ public class ErrorController : Controller
         {
             // Serve a custom view for 404 errors
             return View("Unauthorized");
+        }
+        else if (code == 403)
+        {
+            // Serve a custom view for 404 errors
+            return View("Forbidden");
         }
 
         // Optional: handle other codes

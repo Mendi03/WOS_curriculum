@@ -26,8 +26,9 @@ public class AccountController : Controller
         return View(vm);
     }
 
+    [ValidateAntiForgeryToken]
     [HttpPost("register/process")]
-    public IActionResult ProcessRegister(RegistrationFormViewModel vm)
+    public async Task<IActionResult> ProcessRegister(RegistrationFormViewModel vm)
     {
         //normalize data
         vm.Email = (vm.Email ?? "").Trim().ToLowerInvariant();
@@ -43,7 +44,7 @@ public class AccountController : Controller
         }
 
         // Make sure the new email is not in the database
-        if (_context.Users.Any((u) => u.Email == vm.Email))
+        if (await _context.Users.AnyAsync((u) => u.Email == vm.Email))
         {
             ModelState.AddModelError("Email", "That email is already in use. Please login instead");
             return View(nameof(RegisterForm), vm);
@@ -61,8 +62,8 @@ public class AccountController : Controller
         };
 
         // add new user to database
-        _context.Users.Add(newUser);
-        _context.SaveChanges();
+        await _context.Users.AddAsync(newUser);
+        await _context.SaveChangesAsync();
 
         // logs user in
         HttpContext.Session.SetInt32(SessionUserId, newUser.Id);
@@ -78,8 +79,9 @@ public class AccountController : Controller
         return View(vm);
     }
 
+    [ValidateAntiForgeryToken]
     [HttpPost("login/process")]
-    public IActionResult ProcessLogin(LoginFormViewModel vm)
+    public async Task<IActionResult> ProcessLogin(LoginFormViewModel vm)
     {
         // normalize input
         vm.Email = (vm.Email ?? "").Trim().ToLowerInvariant();
@@ -92,7 +94,7 @@ public class AccountController : Controller
         }
 
         // email exists, find user
-        var maybeUser = _context.Users.FirstOrDefault((u) => u.Email == vm.Email);
+        var maybeUser = await _context.Users.FirstOrDefaultAsync((u) => u.Email == vm.Email);
 
         if (maybeUser is null || (!_passwords.Verify(vm.Password, maybeUser.PasswordHash)))
         {
@@ -128,7 +130,7 @@ public class AccountController : Controller
     }
 
     [HttpGet("profile")]
-    public IActionResult UserProfile()
+    public async Task<IActionResult> UserProfile()
     {
         var userId = HttpContext.Session.GetInt32(SessionUserId);
 
@@ -137,13 +139,13 @@ public class AccountController : Controller
             return Unauthorized();
         }
 
-        var vm = _context.Users.AsNoTracking().Where(u => u.Id == uid).Select(u => new ProfileViewModel
+        var vm = await _context.Users.AsNoTracking().Where(u => u.Id == uid).Select(u => new ProfileViewModel
         {
             Username = u.Username,
             Email = u.Email,
             MoviesAdded = u.Movies.Where(m => m.UserId == uid).ToList().Count,
             MoviesRated = u.Ratings.Where(r => r.UserId == uid).ToList().Count,
-        }).FirstOrDefault();
+        }).FirstOrDefaultAsync();
 
         return View(vm);
     }
