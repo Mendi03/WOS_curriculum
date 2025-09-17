@@ -9,12 +9,14 @@ namespace TheRewind.Controllers;
 public class MovieController : Controller
 {
     private readonly ApplicationContext _context;
+    private readonly ILogger<MovieController> _logger;
 
     private const string SessionUserId = "userId";
 
-    public MovieController(ApplicationContext context)
+    public MovieController(ApplicationContext context, ILogger<MovieController> logger)
     {
         _context = context;
+        _logger = logger;
     }
 
     [HttpGet("")]
@@ -118,7 +120,8 @@ public class MovieController : Controller
 
         if (uid != vm!.UserId)
         {
-            // return Forbid(); // forbid keeps returning a 500 error
+            // return Forbid(); // forbid keeps returning a 500 error so I replaced it with a manual 403 instead
+            _logger.LogWarning("Warning: Unauthorized attempt to delete movie {movieId} by unauthenticated user.", movieId);
             return StatusCode(403);
         }
 

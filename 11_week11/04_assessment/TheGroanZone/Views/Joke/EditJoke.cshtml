@@ -1,0 +1,29 @@
+@model EditJokeViewModel
+
+@{
+    ViewData["Title"] = "Edit Joke";
+    var joke = Model;
+}
+
+<h1>Add a Joke</h1>
+
+<div class="card shadow">
+    <div class="card-body">
+        <form asp-action="UpdateJoke" asp-controller="Joke" method="post" asp-route-jokeId="@joke.Id">
+            <div class="mb-3">
+                <label asp-for="Setup" class="form-label">Setup:</label>
+                <textarea asp-for="Setup" class="form-control"></textarea>
+                <span asp-validation-for="Setup" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Punchline" class="form-label">Punchline:</label>
+                <textarea asp-for="Punchline" class="form-control"></textarea>
+                <span asp-validation-for="Punchline" class="form-text text-danger"></span>
+            </div>
+            <div class="text-start d-flex justify-content-between">
+                <a href="/jokes/@joke.Id" class="btn btn-primary">Go back</a>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

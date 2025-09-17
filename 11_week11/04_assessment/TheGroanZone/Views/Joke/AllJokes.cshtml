@@ -1,0 +1,69 @@
+@model JokeIndexViewModel
+
+@{
+    ViewData["Title"] = "Jokes";
+    var jokes = Model.Jokes;
+    var sessionId = Context.Session.GetInt32("userId");
+}
+
+@if(jokes.Count < 1){
+    <h1>No jokes added yet</h1>
+}
+else{
+    <h1>All Dad Jokes</h1>
+
+
+    <div class="container">
+         @for(int i = 0; i < jokes.Count; i = i + 2){
+        <div class="row gap-3 d-flex mb-3">
+            <div class="col">
+                <div class="card shadow h-100 ">
+                    <div class="card-body justify-content-between d-flex flex-column">
+                        <div class="mb-3">
+                            <p>@jokes[i].Setup</p>
+                            <p>@jokes[i].Punchline</p>
+                        </div>
+                        <div class="text-muted ">
+                            <p class="justify-content-end d-flex">Dad: @jokes[i].Username</p>
+                            <p class="justify-content-end d-flex">Added @jokes[i].CreatedAt</p>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-muted justify-content-between d-flex">
+                        <div>@(jokes[i].AvgRating == null ? "No" : jokes[i].AvgRating) groans</div>
+                        <a href="jokes/@jokes[i].Id">view</a>
+                    </div>
+                </div>
+            </div>
+            @if(i+1 < jokes.Count){
+            <div class="col">
+                <div class="card shadow h-100 ">
+                    <div class="card-body justify-content-between d-flex flex-column">
+                        <div class="mb-3">
+                            <p>@jokes[i+1].Setup</p>
+                            <p>@jokes[i+1].Punchline</p>
+                        </div>
+                        <div class="text-muted ">
+                            <p class="justify-content-end d-flex">Dad: @jokes[i+1].Username</p>
+                            <p class="justify-content-end d-flex">Added @jokes[i+1].CreatedAt</p>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-muted justify-content-between d-flex">
+                        <div>@(jokes[i+1].AvgRating == null ? "No" : jokes[i+1].AvgRating) groans</div>
+                        <a href="jokes/@jokes[i+1].Id">view</a>
+                    </div>
+                </div>
+            </div>
+            }
+            else{
+                <div class="col">
+                </div>
+            }
+            @if(i+2 >= jokes.Count){
+                break;
+            }
+        </div>
+        }
+    </div> 
+}

@@ -1,0 +1,22 @@
+@model JokeViewModel
+
+@{
+    ViewData["Title"] = "Delete Joke";
+
+    var joke = Model;
+}
+
+<h1>Delete Joke</h1>
+
+<div class="card shadow">
+    <div class="card-body">
+        <form asp-action="RemoveJoke" asp-controller="Joke" method="post" asp-route-jokeId="@joke.Id">
+            <p>Are you sure you want to delete joke from the database?</p>
+            <p>(This action cannot be reversed)</p>
+            <div class="text-start d-flex justify-content-between">
+                <a href="/jokes/@joke.Id" class="btn btn-primary">Go back</a>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>

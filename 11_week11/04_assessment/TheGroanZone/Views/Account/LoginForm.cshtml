@@ -1,0 +1,37 @@
+@model LoginFormViewModel
+
+@{
+    ViewData["Title"] = "Log In";
+}
+
+<h1 class="display-4">Log In</h1>
+
+@if (Model.Message is not null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <span>You have been successfully logged out.</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="card shadow">
+    <div class="card-body">
+        <form asp-action="ProcessLogin" asp-controller="Account" method="post">
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email:</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="form-text text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password:</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="form-text text-danger"></span>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>

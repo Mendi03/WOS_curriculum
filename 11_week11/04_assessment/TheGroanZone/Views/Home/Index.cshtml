@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">The Groan Zone</h1>
+    <p>Where every pun is intended</p>
+    @if(Context.Session.GetInt32("userId")== null){
+    <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="RegisterForm">Register</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="LoginForm">Log In</a>
+    }
+</div>
