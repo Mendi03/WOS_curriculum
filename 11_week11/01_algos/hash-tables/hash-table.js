@@ -104,6 +104,76 @@ class HashTable {
 
     return this.get(key) != undefined ?  true :  false;
   }
+
+  /**
+   * Removes the entry for the given key if found.
+   * @param {string} key
+   * @returns {boolean} True if removed, false if not found.
+   */
+  /**
+   * Removes the entry for the given key if found.
+   * @param {string} key
+   * @returns {boolean} True if removed, false if not found.
+   */
+  remove(key) {
+      // TODO: Use splice to remove an element from the bucket array.
+      if (!this.has(key)) return false;
+
+      const hash = this.#hash(key);
+      const innerBucket = this.buckets[hash];
+
+      for (let i = 0; i < innerBucket.length; i++) {
+          if (key === innerBucket[i][0]) {
+              innerBucket.splice(i, 1);
+              return true;
+          }
+      }
+
+      return false;
+  }
+
+  /**
+   * Returns an array of all keys in the table.
+   * @returns {string[]}
+   */
+  keys() {
+      // TODO: Collect all the key elements from every bucket.
+      const result = [];
+
+      for (const [key] of this.buckets.flat()) {
+          result.push(key);
+      }
+
+      return result;
+  }
+
+  /**
+   * Returns an array of all values in the table.
+   * @returns {any[]}
+   */
+  values() {
+      const result = [];
+
+      for (const [_, value] of this.buckets.flat()) {
+          result.push(value);
+      }
+
+      return result;
+  }
+  /**
+   * Returns an array of [key, value] pairs.
+   * @returns {Array<[string, any]>}
+   */
+  entries() {
+    // TODO: Collect each key-value pair into an array of array.
+    const result = [];
+
+      for (const pair of this.buckets.flat()) {
+        result.push(pair);
+      }
+
+      return result;
+  }
 }
 
 
