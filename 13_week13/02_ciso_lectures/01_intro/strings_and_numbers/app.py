@@ -1,0 +1,3 @@
+text = "yoyo"
+
+print(text)
