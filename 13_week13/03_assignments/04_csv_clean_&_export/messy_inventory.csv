@@ -1,0 +1,5 @@
+Item ID ,Category Name, Unit Price ($),Quantity_in_Stock, DATE CREATED
+1,   Electronics , 120.00,50,2023-10-01
+2,Books , 15.99, 150, 2023-10-01
+3,    Office Supplies, 5.00,300, 2023-10-02
+4,Books , 25.50,10,2023-10-02

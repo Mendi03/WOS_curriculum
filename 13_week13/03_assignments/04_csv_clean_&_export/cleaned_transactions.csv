@@ -1,0 +1,5 @@
+item_id,category_name,unit_price_usd,quantity_in_stock,date_created
+1,electronics,120.0,50,2023-10-01
+2,books,15.99,150, 2023-10-01
+3,office supplies,5.0,300, 2023-10-02
+4,books,25.5,10,2023-10-02
