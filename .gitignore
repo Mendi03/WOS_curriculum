@@ -9,6 +9,7 @@ node_modules/
 *.docx
 *.exe
 *appsettings.json
+*.venv/
 # Ignored folders under week 2:
 02_week2/professional_development/
 
