@@ -1,0 +1,3 @@
+id,name,ability_name,is_hidden,slot
+25,pikachu,static,False,1
+25,pikachu,lightning-rod,True,3
