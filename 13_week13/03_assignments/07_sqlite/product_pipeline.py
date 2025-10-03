@@ -27,7 +27,9 @@ def transform(product_list):
     # Use pandas.json_normalize() here
     df = pd.json_normalize(product_list, record_path="products", sep="_")
     # Dropped tags because it is a list and sqlite will throw error
-    df = df.drop(columns=["reviews", "images", "thumbnail", "tags"])
+    df = df.drop(columns=["reviews", "images", "thumbnail"])
+
+    df["tags"] = df["tags"].str.join(", ")
     print(df.info())
 
     return df
@@ -47,16 +49,16 @@ def load(df):
 
         print("Data loaded successfully!")
 
-        cursor = conn.cursor()
+        # cursor = conn.cursor()
 
-        # Select all rows from the newly created table
-        cursor.execute("SELECT * FROM inventory;")
+        # # Select all rows from the newly created table
+        # cursor.execute("SELECT * FROM inventory;")
 
-        # Fetch all results
-        rows = cursor.fetchall()
+        # # Fetch all results
+        # rows = cursor.fetchall()
 
-        print(f"Total rows in database: {len(rows)}")
-        print(rows)
+        # print(f"Total rows in database: {len(rows)}")
+        # print(rows)
 
 
 if __name__ == "__main__":
