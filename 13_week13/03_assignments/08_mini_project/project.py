@@ -23,6 +23,7 @@ MY_DATA_BACKUP = "./data/my_brawler_data.json"
 NULL_VALUES = ["", " ", "N/A", "none", "null", None, "undefined"]
 
 DATABASE_FILE = "user_brawlers.db"
+DATABASE_FILE2 = "fav_brawlers.db"
 
 # SETUP for API_KEY
 load_dotenv()
@@ -147,6 +148,8 @@ def transform(data: dict):
     brawlers["collected_gadgets"].replace(NULL_VALUES, "--N/A--", inplace=True)
     # brawlers["collected_gadgets"].fillna("--N/A--", inplace=True)
 
+    # Finding what brawlers should be played more
+
     should_play = brawlers[(brawlers["power"] >= 10) & (brawlers["trophies"] <= 700)]
 
     # Sort
@@ -158,9 +161,69 @@ def transform(data: dict):
     return should_play
 
 
+def transform2(data: dict):
+    # Step 2
+    # Clean columns
+    brawlers = pd.json_normalize(data, record_path="brawlers", sep="_")
+
+    name_map = {
+        f"{brawlers.columns[0]}": "id",
+        f"{brawlers.columns[1]}": "name",
+        f"{brawlers.columns[2]}": "power",
+        f"{brawlers.columns[3]}": "rank",
+        f"{brawlers.columns[4]}": "trophies",
+        f"{brawlers.columns[5]}": "highest_trophies",
+        f"{brawlers.columns[6]}": "gears",
+        f"{brawlers.columns[7]}": "collected_star_powers",
+        f"{brawlers.columns[8]}": "collected_gadgets",
+    }
+
+    brawlers.rename(columns=name_map, inplace=True)
+    brawlers = brawlers.drop(columns=["gears"])
+
+    # Clean/Transform Star Power column (Added the star_power column and changed collected_star_powers column):
+    brawlers["star_power_count"] = (
+        brawlers["collected_star_powers"].apply(len).fillna(0).astype(int)
+    )
+
+    brawlers["collected_star_powers"] = brawlers["collected_star_powers"].apply(
+        lambda cell: (
+            ", ".join([sp.get("name") for sp in cell]) if len(cell) > 0 else " "
+        )
+    )
+    # Can directly replace with string
+    brawlers["collected_star_powers"].replace(NULL_VALUES, "--N/A--", inplace=True)
+    # brawlers["collected_star_powers"].fillna("--N/A--", inplace=True)
+
+    # Clean/Transform Gadgets column:
+    brawlers["gadget_count"] = (
+        brawlers["collected_gadgets"].apply(len).fillna(0).astype(int)
+    )
+
+    brawlers["collected_gadgets"] = brawlers["collected_gadgets"].apply(
+        lambda cell: (
+            ", ".join([sp.get("name") for sp in cell]) if len(cell) > 0 else " "
+        )
+    )
+    brawlers["collected_gadgets"].replace(NULL_VALUES, "--N/A--", inplace=True)
+    # brawlers["collected_gadgets"].fillna("--N/A--", inplace=True)
+
+    # Finding favorite brawlers
+
+    fav_brawlers = brawlers[(brawlers["power"] >= 10) & (brawlers["trophies"] >= 800)]
+
+    # Sort
+    fav_brawlers = fav_brawlers.sort_values(by=["trophies"], ascending=[False])
+
+    print(f"{colorama.Fore.GREEN}Successfully transformed data")
+    print(f"{colorama.Style.RESET_ALL}")
+
+    return fav_brawlers
+
+
 def load(df):
     # Load the DataFrame to SQL
-    with sqlite3.connect(DATABASE_FILE) as conn:
+    with sqlite3.connect(DATABASE_FILE2) as conn:
         # Use .to_sql() to create a table named 'products' and insert all data
         df.to_sql(
             name="user_brawlers",  # 1. The name of the table to create
@@ -175,9 +238,9 @@ if __name__ == "__main__":
     responses = extract()
     # print(pprint.pp(response))
     # brawler data
-    b_data = transform(responses[0])
+    # b_data = transform(responses[0])
+
+    # fav_brawlers = transform2(responses[0])
 
     load(b_data)
-    # print(b_data["collected_star_powers"])
-    # print(b_data.head(5))
-    # print(b_data.tail(5))
+    # load(fav_brawlers)
