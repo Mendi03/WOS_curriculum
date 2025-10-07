@@ -9,7 +9,9 @@ import colorama
 import argparse
 
 from dotenv import load_dotenv
+
 from utilities.transform import transform
+import utilities.transform
 
 # API URL Requests
 # USER_DATA_REQUEST = "https://api.brawlstars.com/v1/players/%23QGY0C2GV"
